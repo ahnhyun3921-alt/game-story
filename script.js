@@ -662,10 +662,17 @@ function LoginPage({ onNavigate, onLogin }) {
 }
 
 // 마이페이지
-function MyPage({ contacts, currentUser, isLoggedIn, onNavigate }) {
+function MyPage({ contacts, currentUser, isLoggedIn, onNavigate, proposals, onProposalAction }) {
     const [myPortfolio, setMyPortfolio] = useState("포트폴리오를 작성해주세요.");
     const [isEditingPortfolio, setIsEditingPortfolio] = useState(false);
     const [portfolioText, setPortfolioText] = useState(myPortfolio);
+    const [portfolioLinks, setPortfolioLinks] = useState([
+        { id: 1, title: '포트폴리오 웹사이트', url: 'https://myportfolio.com' },
+        { id: 2, title: 'GitHub 프로젝트', url: 'https://github.com/myprojects' }
+    ]);
+    const [newLinkTitle, setNewLinkTitle] = useState('');
+    const [newLinkUrl, setNewLinkUrl] = useState('');
+    const [isAddingLink, setIsAddingLink] = useState(false);
 
     if (!isLoggedIn) {
         return (
@@ -696,6 +703,8 @@ function MyPage({ contacts, currentUser, isLoggedIn, onNavigate }) {
 
     const sentContacts = contacts.filter(c => c.from === currentUser);
     const receivedContacts = contacts.filter(c => c.to === currentUser);
+    const sentProposals = proposals ? proposals.filter(p => p.from === currentUser) : [];
+    const receivedProposals = proposals ? proposals.filter(p => p.to === currentUser) : [];
 
     const handleSavePortfolio = () => {
         setMyPortfolio(portfolioText);
@@ -708,6 +717,28 @@ function MyPage({ contacts, currentUser, isLoggedIn, onNavigate }) {
         setIsEditingPortfolio(false);
     };
 
+    const handleAddLink = () => {
+        if (!newLinkTitle.trim() || !newLinkUrl.trim()) {
+            alert('제목과 URL을 모두 입력해주세요.');
+            return;
+        }
+        const newLink = {
+            id: Date.now(),
+            title: newLinkTitle.trim(),
+            url: newLinkUrl.trim()
+        };
+        setPortfolioLinks([...portfolioLinks, newLink]);
+        setNewLinkTitle('');
+        setNewLinkUrl('');
+        setIsAddingLink(false);
+    };
+
+    const handleDeleteLink = (linkId) => {
+        if (window.confirm('이 링크를 삭제하시겠습니까?')) {
+            setPortfolioLinks(portfolioLinks.filter(link => link.id !== linkId));
+        }
+    };
+
     return (
         <div className="main-content">
             <div style={{ maxWidth: '1000px', margin: '0 auto', padding: '40px 20px' }}>
@@ -718,6 +749,156 @@ function MyPage({ contacts, currentUser, isLoggedIn, onNavigate }) {
                     <p style={{ fontSize: '18px', color: '#333', fontFamily: 'Paperlogy, sans-serif' }}>
                         <strong>닉네임:</strong> {currentUser}
                     </p>
+                </div>
+
+                {/* 포트폴리오 링크 섹션 */}
+                <div style={{ background: 'white', padding: '30px', borderRadius: '8px', marginBottom: '30px', boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+                        <h2 style={{ fontSize: '24px', fontFamily: 'Paperlogy, sans-serif' }}>🔗 포트폴리오 링크</h2>
+                        <button
+                            onClick={() => setIsAddingLink(true)}
+                            style={{
+                                padding: '8px 16px',
+                                background: '#EC6363',
+                                color: 'white',
+                                border: 'none',
+                                borderRadius: '6px',
+                                cursor: 'pointer',
+                                fontSize: '14px',
+                                fontWeight: '600',
+                                fontFamily: 'Paperlogy, sans-serif'
+                            }}
+                        >
+                            + 링크 추가
+                        </button>
+                    </div>
+
+                    {isAddingLink && (
+                        <div style={{ 
+                            background: '#f8f9fa', 
+                            padding: '20px', 
+                            borderRadius: '8px',
+                            marginBottom: '15px',
+                            border: '2px solid #EC6363'
+                        }}>
+                            <input
+                                type="text"
+                                placeholder="링크 제목 (예: 포트폴리오 웹사이트)"
+                                value={newLinkTitle}
+                                onChange={(e) => setNewLinkTitle(e.target.value)}
+                                style={{
+                                    width: '100%',
+                                    padding: '12px',
+                                    marginBottom: '10px',
+                                    border: '1px solid #ddd',
+                                    borderRadius: '6px',
+                                    fontSize: '14px',
+                                    fontFamily: 'Paperlogy, sans-serif',
+                                    boxSizing: 'border-box'
+                                }}
+                            />
+                            <input
+                                type="url"
+                                placeholder="URL (예: https://myportfolio.com)"
+                                value={newLinkUrl}
+                                onChange={(e) => setNewLinkUrl(e.target.value)}
+                                style={{
+                                    width: '100%',
+                                    padding: '12px',
+                                    marginBottom: '15px',
+                                    border: '1px solid #ddd',
+                                    borderRadius: '6px',
+                                    fontSize: '14px',
+                                    fontFamily: 'Paperlogy, sans-serif',
+                                    boxSizing: 'border-box'
+                                }}
+                            />
+                            <div style={{ display: 'flex', gap: '10px' }}>
+                                <button
+                                    onClick={handleAddLink}
+                                    style={{
+                                        padding: '10px 20px',
+                                        background: '#EC6363',
+                                        color: 'white',
+                                        border: 'none',
+                                        borderRadius: '6px',
+                                        cursor: 'pointer',
+                                        fontSize: '14px',
+                                        fontFamily: 'Paperlogy, sans-serif'
+                                    }}
+                                >
+                                    추가
+                                </button>
+                                <button
+                                    onClick={() => {
+                                        setIsAddingLink(false);
+                                        setNewLinkTitle('');
+                                        setNewLinkUrl('');
+                                    }}
+                                    style={{
+                                        padding: '10px 20px',
+                                        background: '#888',
+                                        color: 'white',
+                                        border: 'none',
+                                        borderRadius: '6px',
+                                        cursor: 'pointer',
+                                        fontSize: '14px',
+                                        fontFamily: 'Paperlogy, sans-serif'
+                                    }}
+                                >
+                                    취소
+                                </button>
+                            </div>
+                        </div>
+                    )}
+
+                    <div style={{ display: 'grid', gap: '12px' }}>
+                        {portfolioLinks.map(link => (
+                            <div key={link.id} style={{ 
+                                background: '#f8f9fa', 
+                                padding: '16px 20px', 
+                                borderRadius: '8px',
+                                border: '1px solid #e0e0e0',
+                                display: 'flex',
+                                justifyContent: 'space-between',
+                                alignItems: 'center'
+                            }}>
+                                <div style={{ flex: 1 }}>
+                                    <div style={{ fontWeight: '600', marginBottom: '5px', fontFamily: 'Paperlogy, sans-serif' }}>
+                                        {link.title}
+                                    </div>
+                                    <a 
+                                        href={link.url} 
+                                        target="_blank" 
+                                        rel="noopener noreferrer"
+                                        style={{ 
+                                            color: '#EC6363', 
+                                            textDecoration: 'none',
+                                            fontSize: '14px',
+                                            fontFamily: 'Paperlogy, sans-serif'
+                                        }}
+                                    >
+                                        {link.url} ↗
+                                    </a>
+                                </div>
+                                <button
+                                    onClick={() => handleDeleteLink(link.id)}
+                                    style={{
+                                        padding: '6px 12px',
+                                        background: '#ff4444',
+                                        color: 'white',
+                                        border: 'none',
+                                        borderRadius: '4px',
+                                        cursor: 'pointer',
+                                        fontSize: '12px',
+                                        fontFamily: 'Paperlogy, sans-serif'
+                                    }}
+                                >
+                                    삭제
+                                </button>
+                            </div>
+                        ))}
+                    </div>
                 </div>
 
                 <div style={{ background: 'white', padding: '30px', borderRadius: '8px', marginBottom: '30px', boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}>
@@ -803,6 +984,131 @@ function MyPage({ contacts, currentUser, isLoggedIn, onNavigate }) {
                         <p style={{ lineHeight: '1.8', whiteSpace: 'pre-line', color: '#555', fontFamily: 'Paperlogy, sans-serif' }}>
                             {myPortfolio}
                         </p>
+                    )}
+                </div>
+
+                {/* 내가 보낸 제안 섹션 */}
+                <div style={{ background: 'white', padding: '30px', borderRadius: '8px', marginBottom: '30px', boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}>
+                    <h2 style={{ fontSize: '24px', marginBottom: '20px', fontFamily: 'Paperlogy, sans-serif' }}>📤 내가 보낸 제안</h2>
+                    {sentProposals.length === 0 ? (
+                        <p style={{ color: '#999', fontFamily: 'Paperlogy, sans-serif' }}>보낸 제안이 없습니다.</p>
+                    ) : (
+                        <div>
+                            {sentProposals.map(proposal => (
+                                <div key={proposal.id} style={{ padding: '20px', background: '#f9fafb', borderRadius: '8px', marginBottom: '15px' }}>
+                                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
+                                        <strong style={{ color: '#EC6363', fontFamily: 'Paperlogy, sans-serif' }}>받는 사람: {proposal.to}</strong>
+                                        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                                            <span style={{ 
+                                                padding: '4px 12px',
+                                                background: proposal.status === 'accepted' ? '#4CAF50' : 
+                                                           proposal.status === 'rejected' ? '#f44336' : '#FFA726',
+                                                color: 'white',
+                                                borderRadius: '12px',
+                                                fontSize: '12px',
+                                                fontFamily: 'Paperlogy, sans-serif'
+                                            }}>
+                                                {proposal.status === 'accepted' ? '✓ 승낙됨' : 
+                                                 proposal.status === 'rejected' ? '✗ 거부됨' : '⏱ 대기중'}
+                                            </span>
+                                            <span style={{ color: '#666', fontSize: '14px', fontFamily: 'Paperlogy, sans-serif' }}>
+                                                {proposal.date} {proposal.time}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <p style={{ lineHeight: '1.6', fontFamily: 'Paperlogy, sans-serif' }}>{proposal.message}</p>
+                                </div>
+                            ))}
+                        </div>
+                    )}
+                </div>
+
+                {/* 받은 제안 섹션 */}
+                <div style={{ background: 'white', padding: '30px', borderRadius: '8px', marginBottom: '30px', boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}>
+                    <h2 style={{ fontSize: '24px', marginBottom: '20px', fontFamily: 'Paperlogy, sans-serif' }}>📥 받은 제안</h2>
+                    {receivedProposals.length === 0 ? (
+                        <p style={{ color: '#999', fontFamily: 'Paperlogy, sans-serif' }}>받은 제안이 없습니다.</p>
+                    ) : (
+                        <div>
+                            {receivedProposals.map(proposal => (
+                                <div key={proposal.id} style={{ padding: '20px', background: '#fff5f5', borderRadius: '8px', marginBottom: '15px', border: '1px solid #ffdddd' }}>
+                                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
+                                        <strong style={{ color: '#EC6363', fontFamily: 'Paperlogy, sans-serif' }}>보낸 사람: {proposal.from}</strong>
+                                        <span style={{ color: '#666', fontSize: '14px', fontFamily: 'Paperlogy, sans-serif' }}>
+                                            {proposal.date} {proposal.time}
+                                        </span>
+                                    </div>
+                                    <p style={{ lineHeight: '1.6', marginBottom: '15px', fontFamily: 'Paperlogy, sans-serif' }}>
+                                        {proposal.message}
+                                    </p>
+                                    
+                                    {proposal.status === 'pending' && (
+                                        <div style={{ display: 'flex', gap: '10px' }}>
+                                            <button
+                                                onClick={() => onProposalAction(proposal.id, 'accepted')}
+                                                style={{
+                                                    padding: '10px 24px',
+                                                    background: '#4CAF50',
+                                                    color: 'white',
+                                                    border: 'none',
+                                                    borderRadius: '6px',
+                                                    cursor: 'pointer',
+                                                    fontSize: '14px',
+                                                    fontWeight: '600',
+                                                    fontFamily: 'Paperlogy, sans-serif'
+                                                }}
+                                            >
+                                                ✓ 승낙
+                                            </button>
+                                            <button
+                                                onClick={() => onProposalAction(proposal.id, 'rejected')}
+                                                style={{
+                                                    padding: '10px 24px',
+                                                    background: '#f44336',
+                                                    color: 'white',
+                                                    border: 'none',
+                                                    borderRadius: '6px',
+                                                    cursor: 'pointer',
+                                                    fontSize: '14px',
+                                                    fontWeight: '600',
+                                                    fontFamily: 'Paperlogy, sans-serif'
+                                                }}
+                                            >
+                                                ✗ 거부
+                                            </button>
+                                        </div>
+                                    )}
+                                    
+                                    {proposal.status === 'accepted' && (
+                                        <div style={{ 
+                                            padding: '10px 16px',
+                                            background: '#E8F5E9',
+                                            borderRadius: '6px',
+                                            color: '#2E7D32',
+                                            fontSize: '14px',
+                                            fontWeight: '600',
+                                            fontFamily: 'Paperlogy, sans-serif'
+                                        }}>
+                                            ✓ 승낙한 제안입니다
+                                        </div>
+                                    )}
+                                    
+                                    {proposal.status === 'rejected' && (
+                                        <div style={{ 
+                                            padding: '10px 16px',
+                                            background: '#FFEBEE',
+                                            borderRadius: '6px',
+                                            color: '#C62828',
+                                            fontSize: '14px',
+                                            fontWeight: '600',
+                                            fontFamily: 'Paperlogy, sans-serif'
+                                        }}>
+                                            ✗ 거부한 제안입니다
+                                        </div>
+                                    )}
+                                </div>
+                            ))}
+                        </div>
                     )}
                 </div>
 
@@ -1199,6 +1505,26 @@ function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [currentUser, setCurrentUser] = useState(null);
     const [contacts, setContacts] = useState([]); // 연락 내역 저장
+    const [proposals, setProposals] = useState([ // 제안 내역 저장
+        {
+            id: 1,
+            from: '레드플라임',
+            to: 'ahnhyun9',
+            message: '안녕하세요! 함께 프로젝트를 진행하고 싶습니다. 제 포트폴리오를 확인해주세요!',
+            date: '2024.11.15',
+            time: '14:30',
+            status: 'pending' // pending, accepted, rejected
+        },
+        {
+            id: 2,
+            from: 'ahnhyun9',
+            to: '블루드롭',
+            message: '미스터리 장르 프로젝트에 관심이 있습니다. 협업 가능한지 여쭤봅니다.',
+            date: '2024.11.14',
+            time: '10:15',
+            status: 'pending'
+        }
+    ]);
 
     const handleLogin = (userId) => {
         setIsLoggedIn(true);
@@ -1221,6 +1547,17 @@ function App() {
             time: new Date().toLocaleTimeString('ko-KR')
         };
         setContacts([...contacts, newContact]);
+    };
+
+    const handleProposalAction = (proposalId, action) => {
+        setProposals(proposals.map(proposal => 
+            proposal.id === proposalId 
+                ? { ...proposal, status: action }
+                : proposal
+        ));
+        
+        const actionText = action === 'accepted' ? '승낙' : '거부';
+        alert(`제안을 ${actionText}했습니다.`);
     };
 
     const renderPage = () => {
@@ -1322,7 +1659,7 @@ function App() {
             case 'team':
                 return <TeamPage onNavigate={setCurrentPage} />;
             case 'mypage':
-                return <MyPage contacts={contacts} currentUser={currentUser} isLoggedIn={isLoggedIn} onNavigate={setCurrentPage} />;
+                return <MyPage contacts={contacts} currentUser={currentUser} isLoggedIn={isLoggedIn} onNavigate={setCurrentPage} proposals={proposals} onProposalAction={handleProposalAction} />;
             case 'scenario-select':
                 return <ScenarioSelectPage onNavigate={setCurrentPage} />;
             case 'scenario-direct':
