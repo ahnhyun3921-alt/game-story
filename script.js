@@ -149,7 +149,7 @@ function Header({ currentPage, onNavigate, isLoggedIn, onLogout }) {
         <header className="header">
             <div className="header-content">
                 <a href="#" className="logo" onClick={() => onNavigate('home')}>
-                    <div className="logo-icon">G</div>
+                    <img src="./images/logo.png" alt="GAME STORY" className="logo-image" />
                     <span className="logo-text">GAME STORY</span>
                 </a>
                 
@@ -186,9 +186,6 @@ function Header({ currentPage, onNavigate, isLoggedIn, onLogout }) {
                             <a href="#" className="nav-link">마이페이지</a>
                         </li>
                         <li className="nav-item">
-                            <a href="#" className="nav-link">회원가입</a>
-                        </li>
-                        <li className="nav-item">
                             {isLoggedIn ? (
                                 <a 
                                     href="#" 
@@ -210,25 +207,27 @@ function Header({ currentPage, onNavigate, isLoggedIn, onLogout }) {
                     </ul>
                 </nav>
                 
-                <div style={{ position: 'relative' }}>
-                    <img 
-                        src="./images/icon-notification.png" 
-                        alt="알림" 
-                        className="notification-icon"
-                        onClick={() => setShowNotification(!showNotification)}
-                    />
-                    {showNotification && (
-                        <div className="notification-dropdown">
-                            <div className="notification-header">알림</div>
-                            {notifications.map(notif => (
-                                <div key={notif.id} className="notification-item">
-                                    <div className="notification-date">{notif.date}</div>
-                                    <div className="notification-text">{notif.text}</div>
-                                </div>
-                            ))}
-                        </div>
-                    )}
-                </div>
+                {currentPage === 'home' && (
+                    <div style={{ position: 'relative' }}>
+                        <img 
+                            src="./images/icon-notification.png" 
+                            alt="알림" 
+                            className="notification-icon"
+                            onClick={() => setShowNotification(!showNotification)}
+                        />
+                        {showNotification && (
+                            <div className="notification-dropdown">
+                                <div className="notification-header">알림</div>
+                                {notifications.map(notif => (
+                                    <div key={notif.id} className="notification-item">
+                                        <div className="notification-date">{notif.date}</div>
+                                        <div className="notification-text">{notif.text}</div>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+                )}
             </div>
         </header>
     );
@@ -258,7 +257,7 @@ function HomePage({ onNavigate }) {
             <div className="banner">
                 <h1 className="banner-title">머리 속의 이야기에서 손끝의 게임으로</h1>
                 <div className="banner-characters">
-                    <img src="./images/start-banner.png" alt="캐릭터들" style={{ width: '600px', height: 'auto' }} />
+                    <img src="./images/start-banner.png" alt="캐릭터들" className="banner-image" />
                 </div>
             </div>
 
@@ -314,12 +313,13 @@ function ScenarioSelectPage({ onNavigate }) {
     return (
         <div className="main-content">
             <div className="selection-banner">
+                <img src="./images/select-banner.png" alt="배너" className="selection-banner-image" />
                 <h1 className="banner-text">내 상상 속 멋진 이야기를<br />시나리오로 써보세요!</h1>
             </div>
 
             <div className="method-cards">
                 <div className="method-card" onClick={() => onNavigate('scenario-direct')}>
-                    <img src="./images/illust-direct.png" alt="직접 작성" className="method-icon" />
+                    <img src="./images/icon-direct.png" alt="직접 작성" className="method-icon" />
                     <h2 className="method-title">직접 시나리오<br />작성하기</h2>
                     <p className="method-description">
                         창은 선택을 바탕으로 제공되는 탬플릿을 활용해서<br />
@@ -329,7 +329,7 @@ function ScenarioSelectPage({ onNavigate }) {
                 </div>
 
                 <div className="method-card" onClick={() => onNavigate('scenario-ai')}>
-                    <img src="./images/illust-ai.png" alt="AI 작성" className="method-icon" />
+                    <img src="./images/icon-ai.png" alt="AI 작성" className="method-icon" />
                     <h2 className="method-title">AI와 시나리오<br />작성하기</h2>
                     <p className="method-description">
                         AI의 도움으로 말랑하이<br />
@@ -339,7 +339,7 @@ function ScenarioSelectPage({ onNavigate }) {
                 </div>
 
                 <div className="method-card" onClick={() => onNavigate('scenario-upload')}>
-                    <img src="./images/illust-upload.png" alt="업로드" className="method-icon" />
+                    <img src="./images/icon-upload.png" alt="업로드" className="method-icon" />
                     <h2 className="method-title">작성한 시나리오<br />업로드하기</h2>
                     <p className="method-description">
                         미리 작성한 시나리오를 업로드하고<br />
@@ -481,7 +481,7 @@ function TeamPage() {
     return (
         <div className="main-content">
             <div className="team-banner">
-                <img src="./images/team-banner.png" alt="팀 캐릭터" className="team-character" />
+                <img src="./images/team-banner.png" alt="팀 캐릭터" className="team-banner-image" />
                 <h1 className="team-title">함께할 팀원을 찾아보세요!</h1>
             </div>
 
@@ -578,7 +578,7 @@ function LoginPage({ onNavigate, onLogin }) {
             </form>
 
             <p style={{ textAlign: 'center', marginTop: '20px', color: '#666' }}>
-                계정이 없으신가요? <a href="#" onClick={(e) => { e.preventDefault(); onNavigate('signup'); }} style={{ color: '#E85F5C', fontWeight: '600' }}>회원가입</a>
+                계정이 없으신가요? <a href="#" onClick={(e) => { e.preventDefault(); onNavigate('signup'); }} style={{ color: '#E85F5C', fontWeight: '600', textDecoration: 'none' }}>회원가입</a>
             </p>
         </div>
     );
