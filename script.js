@@ -136,7 +136,7 @@ const DUMMY_TEAM_MEMBERS = [
 ];
 
 // 헤더 컴포넌트
-function Header({ currentPage, onNavigate, isLoggedIn, onLogout }) {
+function Header({ currentPage, onNavigate, isLoggedIn, onLogout, currentUser }) {
     const [showNotification, setShowNotification] = useState(false);
     const [notifications, setNotifications] = useState([
         { id: 1, date: "11월 17일", text: "안현진 님이 시나리오에 댓글을 남겼습니다." },
@@ -186,6 +186,15 @@ function Header({ currentPage, onNavigate, isLoggedIn, onLogout }) {
                             <a href="#" className="nav-link">마이페이지</a>
                         </li>
                         <li className="nav-item">
+                            <a 
+                                href="#" 
+                                className={`nav-link ${currentPage === 'signup' ? 'active' : ''}`}
+                                onClick={(e) => { e.preventDefault(); onNavigate('signup'); }}
+                            >
+                                회원가입
+                            </a>
+                        </li>
+                        <li className="nav-item">
                             {isLoggedIn ? (
                                 <a 
                                     href="#" 
@@ -207,27 +216,34 @@ function Header({ currentPage, onNavigate, isLoggedIn, onLogout }) {
                     </ul>
                 </nav>
                 
-                {currentPage === 'home' && (
-                    <div style={{ position: 'relative' }}>
-                        <img 
-                            src="./images/icon-notification.png" 
-                            alt="알림" 
-                            className="notification-icon"
-                            onClick={() => setShowNotification(!showNotification)}
-                        />
-                        {showNotification && (
-                            <div className="notification-dropdown">
-                                <div className="notification-header">알림</div>
-                                {notifications.map(notif => (
-                                    <div key={notif.id} className="notification-item">
-                                        <div className="notification-date">{notif.date}</div>
-                                        <div className="notification-text">{notif.text}</div>
-                                    </div>
-                                ))}
-                            </div>
-                        )}
-                    </div>
-                )}
+                <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                    {isLoggedIn && currentUser && (
+                        <span style={{ fontSize: '14px', color: '#666', fontWeight: '500' }}>
+                            {currentUser}님
+                        </span>
+                    )}
+                    {currentPage === 'home' && (
+                        <div style={{ position: 'relative' }}>
+                            <img 
+                                src="./images/icon-notification.png" 
+                                alt="알림" 
+                                className="notification-icon"
+                                onClick={() => setShowNotification(!showNotification)}
+                            />
+                            {showNotification && (
+                                <div className="notification-dropdown">
+                                    <div className="notification-header">알림</div>
+                                    {notifications.map(notif => (
+                                        <div key={notif.id} className="notification-item">
+                                            <div className="notification-date">{notif.date}</div>
+                                            <div className="notification-text">{notif.text}</div>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+                    )}
+                </div>
             </div>
         </header>
     );
@@ -322,7 +338,7 @@ function ScenarioSelectPage({ onNavigate }) {
                     <img src="./images/icon-direct.png" alt="직접 작성" className="method-icon" />
                     <h2 className="method-title">직접 시나리오<br />작성하기</h2>
                     <p className="method-description">
-                        창은 선택을 바탕으로 제공되는 탬플릿을 활용해서<br />
+                        장르 선택을 바탕으로 제공되는 템플렛을 활용해서<br />
                         더 쉽고 빠르게 시나리오를 작성해보세요.
                     </p>
                     <button className="method-button">시작하기</button>
@@ -332,7 +348,7 @@ function ScenarioSelectPage({ onNavigate }) {
                     <img src="./images/icon-ai.png" alt="AI 작성" className="method-icon" />
                     <h2 className="method-title">AI와 시나리오<br />작성하기</h2>
                     <p className="method-description">
-                        AI의 도움으로 말랑하이<br />
+                        AI의 도움으로 막힘없이<br />
                         탄탄한 이야기를 완성해보세요.
                     </p>
                     <button className="method-button">시작하기</button>
@@ -343,8 +359,8 @@ function ScenarioSelectPage({ onNavigate }) {
                     <h2 className="method-title">작성한 시나리오<br />업로드하기</h2>
                     <p className="method-description">
                         미리 작성한 시나리오를 업로드하고<br />
-                        탬플릿을 모르겠번 하세요.<br />
-                        *Word만 지원합니다.
+                        팀원들을 모집해보세요.<br />
+                        <span style={{ color: '#EC6363' }}>*Word만 지원됩니다.</span>
                     </p>
                     <button className="method-button">시작하기</button>
                 </div>
@@ -537,14 +553,27 @@ function LoginPage({ onNavigate, onLogin }) {
         password: ''
     });
 
+    // 실제 계정 데이터 (실제 서비스에서는 백엔드에서 관리해야 함)
+    const VALID_ACCOUNT = {
+        id: 'ahnhyun9',
+        password: 'dksgusWls8&',
+        name: '안현진'
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (formData.id && formData.password) {
-            onLogin(formData.id);
-            alert('로그인 성공!');
+        if (!formData.id || !formData.password) {
+            alert('아이디와 비밀번호를 입력해주세요.');
+            return;
+        }
+        
+        // 계정 확인
+        if (formData.id === VALID_ACCOUNT.id && formData.password === VALID_ACCOUNT.password) {
+            onLogin(VALID_ACCOUNT.name);
+            alert(`${VALID_ACCOUNT.name}님, 환영합니다!`);
             onNavigate('home');
         } else {
-            alert('아이디와 비밀번호를 입력해주세요.');
+            alert('아이디 또는 비밀번호가 일치하지 않습니다.');
         }
     };
 
@@ -561,6 +590,7 @@ function LoginPage({ onNavigate, onLogin }) {
                         className="form-input"
                         value={formData.id}
                         onChange={(e) => setFormData({...formData, id: e.target.value})}
+                        placeholder="아이디를 입력하세요"
                     />
                 </div>
                 
@@ -571,6 +601,7 @@ function LoginPage({ onNavigate, onLogin }) {
                         className="form-input"
                         value={formData.password}
                         onChange={(e) => setFormData({...formData, password: e.target.value})}
+                        placeholder="비밀번호를 입력하세요"
                     />
                 </div>
                 
@@ -578,15 +609,21 @@ function LoginPage({ onNavigate, onLogin }) {
             </form>
 
             <p style={{ textAlign: 'center', marginTop: '20px', color: '#666' }}>
-                계정이 없으신가요? <a href="#" onClick={(e) => { e.preventDefault(); onNavigate('signup'); }} style={{ color: '#E85F5C', fontWeight: '600', textDecoration: 'none' }}>회원가입</a>
+                계정이 없으신가요? 상단의 "회원가입"을 클릭하세요.
             </p>
+            
+            <div style={{ marginTop: '40px', padding: '16px', background: '#f8f8f8', borderRadius: '8px', fontSize: '14px', color: '#666' }}>
+                <p style={{ marginBottom: '8px', fontWeight: '600' }}>테스트 계정:</p>
+                <p style={{ marginBottom: '4px' }}>아이디: ahnhyun9</p>
+                <p>비밀번호: dksgusWls8&</p>
+            </div>
         </div>
     );
 }
 
 // 회원가입 페이지
 function SignupPage({ onNavigate }) {
-    const [step, setStep] = useState(1); // 1: 정보입력, 2: 역할선택
+    const [step, setStep] = useState('role'); // 'role' 또는 'form'
     const [formData, setFormData] = useState({
         id: '',
         password: '',
@@ -595,7 +632,12 @@ function SignupPage({ onNavigate }) {
         role: ''
     });
 
-    const handleNext = () => {
+    const handleRoleSelect = (role) => {
+        setFormData({...formData, role});
+        setStep('form');
+    };
+
+    const handleSubmit = () => {
         if (!formData.id || !formData.password || !formData.nickname || !formData.passwordConfirm) {
             alert('모든 필드를 입력해주세요.');
             return;
@@ -604,113 +646,110 @@ function SignupPage({ onNavigate }) {
             alert('비밀번호가 일치하지 않습니다.');
             return;
         }
-        setStep(2);
-    };
-
-    const handleSubmit = () => {
-        if (!formData.role) {
-            alert('역할을 선택해주세요.');
-            return;
-        }
         alert('회원가입이 완료되었습니다!');
         onNavigate('login');
     };
 
-    if (step === 1) {
+    if (step === 'role') {
         return (
-            <div className="auth-page">
-                <h1 className="auth-title">회원 가입</h1>
+            <div className="role-selection">
+                <h1 className="page-title">회원 가입</h1>
                 <p className="auth-subtitle">간편한 회원가입으로 게임스토리를 사용하세요.</p>
                 
-                <div className="form-group">
-                    <label className="form-label">아이디</label>
-                    <div className="input-with-button">
-                        <input 
-                            type="text" 
-                            className="form-input"
-                            value={formData.id}
-                            onChange={(e) => setFormData({...formData, id: e.target.value})}
-                        />
-                        <button className="check-button">중복 검사</button>
+                <div className="role-cards">
+                    <div 
+                        className="role-card"
+                        onClick={() => handleRoleSelect('creator')}
+                    >
+                        <h2 className="role-title">제작자에요</h2>
+                        <p className="role-subtitle">
+                            재밌는 이야기와<br />
+                            좋은 동료들과 함께해보세요!
+                        </p>
+                        <img src="./images/role-creater.png" alt="제작자" className="role-image" />
                     </div>
-                    <p className="form-hint">영문/숫자 포함된 8자 이상의 아이디를 입력해주세요</p>
-                </div>
-                
-                <div className="form-group">
-                    <label className="form-label">비밀번호</label>
-                    <input 
-                        type="password" 
-                        className="form-input"
-                        value={formData.password}
-                        onChange={(e) => setFormData({...formData, password: e.target.value})}
-                    />
-                    <p className="form-hint">영문/숫자/특수문자 포함된 8자 이상의 비밀번호를 입력해주세요</p>
-                </div>
-                
-                <div className="form-group">
-                    <label className="form-label">닉네임</label>
-                    <div className="input-with-button">
-                        <input 
-                            type="text" 
-                            className="form-input"
-                            value={formData.nickname}
-                            onChange={(e) => setFormData({...formData, nickname: e.target.value})}
-                        />
-                        <button className="check-button">중복 검사</button>
+                    
+                    <div 
+                        className="role-card"
+                        onClick={() => handleRoleSelect('writer')}
+                    >
+                        <h2 className="role-title">작가에요</h2>
+                        <p className="role-subtitle">
+                            재밌는 이야기를 손끝의 게임으로<br />
+                            만드는 여정을 시작하세요!
+                        </p>
+                        <img src="./images/role-writer.png" alt="작가" className="role-image" />
                     </div>
-                    <p className="form-hint">영문/한글/숫자가 포함된 3자 이상의 닉네임을 입력해주세요</p>
                 </div>
-                
-                <div className="form-group">
-                    <label className="form-label">비밀번호 재입력</label>
-                    <input 
-                        type="password" 
-                        className="form-input"
-                        value={formData.passwordConfirm}
-                        onChange={(e) => setFormData({...formData, passwordConfirm: e.target.value})}
-                    />
-                    <p className="form-hint">위에 입력한 비밀번호와 동일한 비밀번호를 다시 입력해주세요</p>
-                </div>
-                
-                <button className="auth-button" onClick={handleNext}>회원가입 완료</button>
             </div>
         );
     }
 
     return (
-        <div className="role-selection">
-            <h1 className="page-title">회원 가입</h1>
+        <div className="auth-page">
+            <h1 className="auth-title">회원 가입</h1>
             <p className="auth-subtitle">간편한 회원가입으로 게임스토리를 사용하세요.</p>
             
-            <div className="role-cards">
-                <div 
-                    className={`role-card ${formData.role === 'creator' ? 'selected' : ''}`}
-                    onClick={() => setFormData({...formData, role: 'creator'})}
-                >
-                    <h2 className="role-title">제작자에요</h2>
-                    <p className="role-subtitle">
-                        재밌는 이야기의<br />
-                        좋은 돌부돌과 함께해보세요!
-                    </p>
-                    <img src="./images/role-creater.png" alt="제작자" className="role-image" />
+            <div className="form-group">
+                <label className="form-label">아이디</label>
+                <div className="input-with-button">
+                    <input 
+                        type="text" 
+                        className="form-input"
+                        value={formData.id}
+                        onChange={(e) => setFormData({...formData, id: e.target.value})}
+                    />
+                    <button className="check-button">중복 검사</button>
                 </div>
-                
-                <div 
-                    className={`role-card ${formData.role === 'writer' ? 'selected' : ''}`}
-                    onClick={() => setFormData({...formData, role: 'writer'})}
-                >
-                    <h2 className="role-title">작가에요</h2>
-                    <p className="role-subtitle">
-                        재밌는 이야기를 손끝의 게임으로<br />
-                        만드는 여정을 시작하세요!
-                    </p>
-                    <img src="./images/role-writer.png" alt="작가" className="role-image" />
-                </div>
+                <p className="form-hint">영문/숫자 포함된 8자 이상의 아이디를 입력해주세요</p>
             </div>
-
-            <button className="auth-button" style={{ maxWidth: '600px', margin: '40px auto 0' }} onClick={handleSubmit}>
-                회원가입 완료
-            </button>
+            
+            <div className="form-group">
+                <label className="form-label">비밀번호</label>
+                <input 
+                    type="password" 
+                    className="form-input"
+                    value={formData.password}
+                    onChange={(e) => setFormData({...formData, password: e.target.value})}
+                />
+                <p className="form-hint">영문/숫자/특수문자 포함된 8자 이상의 비밀번호를 입력해주세요</p>
+            </div>
+            
+            <div className="form-group">
+                <label className="form-label">닉네임</label>
+                <div className="input-with-button">
+                    <input 
+                        type="text" 
+                        className="form-input"
+                        value={formData.nickname}
+                        onChange={(e) => setFormData({...formData, nickname: e.target.value})}
+                    />
+                    <button className="check-button">중복 검사</button>
+                </div>
+                <p className="form-hint">영문/한글/숫자가 포함된 3자 이상의 닉네임을 입력해주세요</p>
+            </div>
+            
+            <div className="form-group">
+                <label className="form-label">비밀번호 재입력</label>
+                <input 
+                    type="password" 
+                    className="form-input"
+                    value={formData.passwordConfirm}
+                    onChange={(e) => setFormData({...formData, passwordConfirm: e.target.value})}
+                />
+                <p className="form-hint">위에 입력한 비밀번호와 동일한 비밀번호를 다시 입력해주세요</p>
+            </div>
+            
+            <button className="auth-button" onClick={handleSubmit}>회원가입 완료</button>
+            
+            <div style={{ textAlign: 'center', marginTop: '20px' }}>
+                <button 
+                    onClick={() => setStep('role')} 
+                    style={{ background: 'none', border: 'none', color: '#666', cursor: 'pointer', textDecoration: 'underline', fontSize: '14px' }}
+                >
+                    역할 다시 선택하기
+                </button>
+            </div>
         </div>
     );
 }
@@ -762,6 +801,7 @@ function App() {
                 onNavigate={setCurrentPage}
                 isLoggedIn={isLoggedIn}
                 onLogout={handleLogout}
+                currentUser={currentUser}
             />
             {renderPage()}
         </div>
