@@ -780,6 +780,214 @@ function SignupPage({ onNavigate }) {
     );
 }
 
+// 시나리오 상세보기 페이지
+function ScenarioDetailPage({ scenarioId, onNavigate }) {
+    const scenario = DUMMY_SCENARIOS.find(s => s.id === scenarioId);
+    const [comments, setComments] = useState(scenario?.comments || []);
+    const [newComment, setNewComment] = useState('');
+    const [replyingTo, setReplyingTo] = useState(null);
+    const [replyText, setReplyText] = useState('');
+
+    if (!scenario) {
+        return <div className="main-content"><h2>시나리오를 찾을 수 없습니다.</h2></div>;
+    }
+
+    const handleAddComment = () => {
+        if (newComment.trim()) {
+            const comment = {
+                id: Date.now(),
+                author: "현재 사용자",
+                text: newComment,
+                date: new Date().toLocaleDateString('ko-KR'),
+                replies: []
+            };
+            setComments([...comments, comment]);
+            setNewComment('');
+        }
+    };
+
+    const handleAddReply = (commentId) => {
+        if (replyText.trim()) {
+            const updatedComments = comments.map(comment => {
+                if (comment.id === commentId) {
+                    return {
+                        ...comment,
+                        replies: [...(comment.replies || []), {
+                            id: Date.now(),
+                            author: "현재 사용자",
+                            text: replyText,
+                            date: new Date().toLocaleDateString('ko-KR')
+                        }]
+                    };
+                }
+                return comment;
+            });
+            setComments(updatedComments);
+            setReplyText('');
+            setReplyingTo(null);
+        }
+    };
+
+    return (
+        <div className="main-content">
+            <div style={{ maxWidth: '1000px', margin: '0 auto', padding: '40px 20px' }}>
+                <button 
+                    onClick={() => onNavigate('home')}
+                    style={{ 
+                        marginBottom: '20px', 
+                        padding: '8px 16px', 
+                        background: '#666', 
+                        color: 'white', 
+                        border: 'none', 
+                        borderRadius: '4px', 
+                        cursor: 'pointer' 
+                    }}
+                >
+                    ← 목록으로
+                </button>
+                <div style={{ background: 'white', padding: '40px', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', marginBottom: '20px' }}>
+                        <div>
+                            <h1 style={{ fontSize: '32px', marginBottom: '10px' }}>{scenario.title}</h1>
+                            <p style={{ color: '#666', fontSize: '16px' }}>작성자: {scenario.author}</p>
+                        </div>
+                        <span className="rating-badge" style={{ fontSize: '24px' }}>{scenario.rating}</span>
+                    </div>
+                    <div className="card-tags" style={{ marginBottom: '30px' }}>
+                        {scenario.tags.map((tag, index) => (
+                            <span key={index} className="tag">{tag}</span>
+                        ))}
+                    </div>
+                    <div style={{ lineHeight: '1.8', fontSize: '16px', whiteSpace: 'pre-line', marginBottom: '40px' }}>
+                        {scenario.fullContent || scenario.description}
+                    </div>
+
+                    <hr style={{ margin: '40px 0', border: 'none', borderTop: '1px solid #ddd' }} />
+
+                    {/* 댓글 섹션 */}
+                    <div>
+                        <h3 style={{ fontSize: '24px', marginBottom: '20px' }}>댓글 ({comments.length})</h3>
+                        
+                        {/* 댓글 작성 */}
+                        <div style={{ marginBottom: '30px' }}>
+                            <textarea
+                                value={newComment}
+                                onChange={(e) => setNewComment(e.target.value)}
+                                placeholder="댓글을 입력하세요..."
+                                style={{
+                                    width: '100%',
+                                    minHeight: '100px',
+                                    padding: '12px',
+                                    border: '1px solid #ddd',
+                                    borderRadius: '4px',
+                                    fontSize: '14px',
+                                    resize: 'vertical',
+                                    fontFamily: 'inherit'
+                                }}
+                            />
+                            <button
+                                onClick={handleAddComment}
+                                style={{
+                                    marginTop: '10px',
+                                    padding: '10px 20px',
+                                    background: '#7c3aed',
+                                    color: 'white',
+                                    border: 'none',
+                                    borderRadius: '4px',
+                                    cursor: 'pointer',
+                                    fontSize: '14px',
+                                    fontWeight: '600'
+                                }}
+                            >
+                                댓글 작성
+                            </button>
+                        </div>
+
+                        {/* 댓글 목록 */}
+                        <div>
+                            {comments.map(comment => (
+                                <div key={comment.id} style={{ marginBottom: '30px', padding: '20px', background: '#f9fafb', borderRadius: '8px' }}>
+                                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
+                                        <strong>{comment.author}</strong>
+                                        <span style={{ color: '#666', fontSize: '14px' }}>{comment.date}</span>
+                                    </div>
+                                    <p style={{ marginBottom: '10px', lineHeight: '1.6' }}>{comment.text}</p>
+                                    <button
+                                        onClick={() => setReplyingTo(replyingTo === comment.id ? null : comment.id)}
+                                        style={{
+                                            padding: '6px 12px',
+                                            background: 'transparent',
+                                            color: '#7c3aed',
+                                            border: '1px solid #7c3aed',
+                                            borderRadius: '4px',
+                                            cursor: 'pointer',
+                                            fontSize: '12px',
+                                            fontWeight: '500'
+                                        }}
+                                    >
+                                        {replyingTo === comment.id ? '취소' : '답글'}
+                                    </button>
+
+                                    {/* 답글 작성 폼 */}
+                                    {replyingTo === comment.id && (
+                                        <div style={{ marginTop: '15px', marginLeft: '20px' }}>
+                                            <textarea
+                                                value={replyText}
+                                                onChange={(e) => setReplyText(e.target.value)}
+                                                placeholder="답글을 입력하세요..."
+                                                style={{
+                                                    width: '100%',
+                                                    minHeight: '80px',
+                                                    padding: '10px',
+                                                    border: '1px solid #ddd',
+                                                    borderRadius: '4px',
+                                                    fontSize: '14px',
+                                                    fontFamily: 'inherit'
+                                                }}
+                                            />
+                                            <button
+                                                onClick={() => handleAddReply(comment.id)}
+                                                style={{
+                                                    marginTop: '8px',
+                                                    padding: '8px 16px',
+                                                    background: '#7c3aed',
+                                                    color: 'white',
+                                                    border: 'none',
+                                                    borderRadius: '4px',
+                                                    cursor: 'pointer',
+                                                    fontSize: '13px',
+                                                    fontWeight: '600'
+                                                }}
+                                            >
+                                                답글 작성
+                                            </button>
+                                        </div>
+                                    )}
+
+                                    {/* 답글 목록 */}
+                                    {comment.replies && comment.replies.length > 0 && (
+                                        <div style={{ marginTop: '20px', marginLeft: '30px' }}>
+                                            {comment.replies.map(reply => (
+                                                <div key={reply.id} style={{ marginBottom: '15px', padding: '15px', background: 'white', borderRadius: '6px' }}>
+                                                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
+                                                        <strong style={{ fontSize: '14px' }}>↳ {reply.author}</strong>
+                                                        <span style={{ color: '#666', fontSize: '12px' }}>{reply.date}</span>
+                                                    </div>
+                                                    <p style={{ fontSize: '14px', lineHeight: '1.6' }}>{reply.text}</p>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
 // 메인 앱 컴포넌트
 function App() {
     const [currentPage, setCurrentPage] = useState('home');
@@ -801,47 +1009,7 @@ function App() {
         // 시나리오 상세보기
         if (currentPage.startsWith('scenario-detail-')) {
             const scenarioId = parseInt(currentPage.replace('scenario-detail-', ''));
-            const scenario = DUMMY_SCENARIOS.find(s => s.id === scenarioId);
-            
-            if (scenario) {
-                return (
-                    <div className="main-content">
-                        <div style={{ maxWidth: '1000px', margin: '0 auto', padding: '40px 20px' }}>
-                            <button 
-                                onClick={() => setCurrentPage('home')}
-                                style={{ 
-                                    marginBottom: '20px', 
-                                    padding: '8px 16px', 
-                                    background: '#666', 
-                                    color: 'white', 
-                                    border: 'none', 
-                                    borderRadius: '4px', 
-                                    cursor: 'pointer' 
-                                }}
-                            >
-                                ← 목록으로
-                            </button>
-                            <div style={{ background: 'white', padding: '40px', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}>
-                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', marginBottom: '20px' }}>
-                                    <div>
-                                        <h1 style={{ fontSize: '32px', marginBottom: '10px' }}>{scenario.title}</h1>
-                                        <p style={{ color: '#666', fontSize: '16px' }}>작성자: {scenario.author}</p>
-                                    </div>
-                                    <span className="rating-badge" style={{ fontSize: '24px' }}>{scenario.rating}</span>
-                                </div>
-                                <div className="card-tags" style={{ marginBottom: '30px' }}>
-                                    {scenario.tags.map((tag, index) => (
-                                        <span key={index} className="tag">{tag}</span>
-                                    ))}
-                                </div>
-                                <div style={{ lineHeight: '1.8', fontSize: '16px', whiteSpace: 'pre-line' }}>
-                                    {scenario.fullContent || scenario.description}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                );
-            }
+            return <ScenarioDetailPage scenarioId={scenarioId} onNavigate={setCurrentPage} />;
         }
         
         // 팀원 상세보기
