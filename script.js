@@ -91,7 +91,8 @@ const DUMMY_TEAM_MEMBERS = [
         role: "스토리 기반 VN 제작자",
         description: "감성적인 연출과 복잡한의 분기 구조 설계에 특화된 제작자입니다. 감동을 주는 게임을 함께 만들어가고!",
         skills: ["연출", "UX", "비주얼 노벨"],
-        avatar: "🔥"
+        avatar: "🔥",
+        portfolio: "3년차 비주얼 노벨 제작자입니다.\n대표작: '봄날의 약속', '겨울 이야기'\n\n주요 경력:\n- 인디 게임 '봄날의 약속' 시나리오 및 연출 (2022)\n- 비주얼 노벨 '겨울 이야기' 기획 및 제작 (2023)\n- 다수의 게임잼 참가 경험"
     },
     {
         id: 2,
@@ -99,7 +100,8 @@ const DUMMY_TEAM_MEMBERS = [
         role: "스토리 기반 VN 제작자",
         description: "미스터리와 스릴러 장르에 강점이 있으며 긴장감 넘치는 스토리를 구성합니다. 함께 프로젝트를 진행할 작가를 찾습니다!",
         skills: ["미스터리", "스릴러", "시나리오"],
-        avatar: "💧"
+        avatar: "💧",
+        portfolio: "5년차 게임 시나리오 작가입니다.\n대표작: '어둠 속의 진실', '밤의 목격자'\n\n전문 분야: 미스터리, 스릴러 장르"
     },
     {
         id: 3,
@@ -107,7 +109,8 @@ const DUMMY_TEAM_MEMBERS = [
         role: "판타지 RPG 제작자",
         description: "방대한 세계관 구축과 캐릭터 디자인에 능숙합니다. 함께 거대한 판타지 세계를 만들 동료를 구합니다!",
         skills: ["세계관", "캐릭터 디자인", "RPG"],
-        avatar: "🌱"
+        avatar: "🌱",
+        portfolio: "판타지 세계관 전문 작가, 4년 경력\n대표작: '에테르 연대기', '고대의 숲'"
     },
     {
         id: 4,
@@ -115,7 +118,8 @@ const DUMMY_TEAM_MEMBERS = [
         role: "역사 시뮬레이션 제작자",
         description: "역사적 고증과 전략 게임 밸런싱에 전문성을 가지고 있습니다. 깊이 있는 전략 게임을 만들고 싶은 분을 찾습니다!",
         skills: ["전략", "밸런싱", "역사"],
-        avatar: "👑"
+        avatar: "👑",
+        portfolio: "역사 시뮬레이션 게임 디자이너, 6년 경력\n대표작: '삼국지 외전', '제국의 흥망'"
     },
     {
         id: 5,
@@ -123,7 +127,8 @@ const DUMMY_TEAM_MEMBERS = [
         role: "액션 RPG 제작자",
         description: "다이나믹한 전투 시스템과 스킬 트리 설계를 전문으로 합니다. 함께 박진감 넘치는 게임을 만들 파트너를 구합니다!",
         skills: ["전투 시스템", "액션", "RPG"],
-        avatar: "⚔️"
+        avatar: "⚔️",
+        portfolio: "액션 RPG 전투 시스템 디자이너, 5년 경력\n대표작: '검의 전설', '전쟁의 서막'"
     },
     {
         id: 6,
@@ -131,7 +136,8 @@ const DUMMY_TEAM_MEMBERS = [
         role: "마법 판타지 제작자",
         description: "독창적인 마법 시스템과 판타지 세계관 구축에 강점이 있습니다. 환상적인 세계를 함께 만들 작가를 찾습니다!",
         skills: ["마법 시스템", "판타지", "세계관"],
-        avatar: "🔮"
+        avatar: "🔮",
+        portfolio: "마법 시스템 설계 전문, 4년 경력\n대표작: '마법사의 탑', '영원한 마나'"
     },
     {
         id: 7,
@@ -139,7 +145,8 @@ const DUMMY_TEAM_MEMBERS = [
         role: "호러 게임 제작자",
         description: "심리적 공포와 서스펜스 연출에 특화되어 있습니다. 함께 등골이 오싹한 게임을 만들 동료를 찾습니다!",
         skills: ["호러", "심리", "연출"],
-        avatar: "👻"
+        avatar: "👻",
+        portfolio: "호러 게임 연출가, 3년 경력\n대표작: '어둠의 숨결', '공포의 저택'"
     },
     {
         id: 8,
@@ -147,7 +154,8 @@ const DUMMY_TEAM_MEMBERS = [
         role: "힐링 게임 제작자",
         description: "따뜻하고 감성적인 스토리텔링과 평화로운 게임 플레이 디자인이 전문입니다. 치유가 되는 게임을 만들고 싶은 분 환영합니다!",
         skills: ["힐링", "감성", "스토리텔링"],
-        avatar: "☁️"
+        avatar: "☁️",
+        portfolio: "힐링 게임 스토리텔러, 4년 경력\n대표작: '작은 정원', '따뜻한 하루'"
     }
 ];
 
@@ -199,7 +207,13 @@ function Header({ currentPage, onNavigate, isLoggedIn, onLogout, currentUser }) 
                             </a>
                         </li>
                         <li className="nav-item">
-                            <a href="#" className="nav-link">마이페이지</a>
+                            <a 
+                                href="#" 
+                                className={`nav-link ${currentPage === 'mypage' ? 'active' : ''}`}
+                                onClick={(e) => { e.preventDefault(); onNavigate('mypage'); }}
+                            >
+                                마이페이지
+                            </a>
                         </li>
                         <li className="nav-item">
                             <a 
@@ -647,6 +661,193 @@ function LoginPage({ onNavigate, onLogin }) {
     );
 }
 
+// 마이페이지
+function MyPage({ contacts, currentUser, isLoggedIn, onNavigate }) {
+    const [myPortfolio, setMyPortfolio] = useState("포트폴리오를 작성해주세요.");
+    const [isEditingPortfolio, setIsEditingPortfolio] = useState(false);
+    const [portfolioText, setPortfolioText] = useState(myPortfolio);
+
+    if (!isLoggedIn) {
+        return (
+            <div className="main-content">
+                <div style={{ maxWidth: '800px', margin: '0 auto', padding: '40px 20px', textAlign: 'center' }}>
+                    <h2 style={{ fontSize: '28px', marginBottom: '20px', fontFamily: 'Paperlogy, sans-serif' }}>로그인이 필요합니다</h2>
+                    <p style={{ marginBottom: '30px', color: '#666', fontFamily: 'Paperlogy, sans-serif' }}>마이페이지를 이용하려면 로그인해주세요.</p>
+                    <button
+                        onClick={() => onNavigate('login')}
+                        style={{
+                            padding: '12px 32px',
+                            background: '#EC6363',
+                            color: 'white',
+                            border: 'none',
+                            borderRadius: '8px',
+                            cursor: 'pointer',
+                            fontSize: '16px',
+                            fontWeight: '600',
+                            fontFamily: 'Paperlogy, sans-serif'
+                        }}
+                    >
+                        로그인하기
+                    </button>
+                </div>
+            </div>
+        );
+    }
+
+    const sentContacts = contacts.filter(c => c.from === currentUser);
+    const receivedContacts = contacts.filter(c => c.to === currentUser);
+
+    const handleSavePortfolio = () => {
+        setMyPortfolio(portfolioText);
+        setIsEditingPortfolio(false);
+        alert('포트폴리오가 저장되었습니다!');
+    };
+
+    const handleCancelEdit = () => {
+        setPortfolioText(myPortfolio);
+        setIsEditingPortfolio(false);
+    };
+
+    return (
+        <div className="main-content">
+            <div style={{ maxWidth: '1000px', margin: '0 auto', padding: '40px 20px' }}>
+                <h1 style={{ fontSize: '32px', marginBottom: '30px', fontFamily: 'Paperlogy, sans-serif' }}>마이페이지</h1>
+                
+                <div style={{ background: 'white', padding: '30px', borderRadius: '8px', marginBottom: '30px', boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}>
+                    <h2 style={{ fontSize: '24px', marginBottom: '20px', fontFamily: 'Paperlogy, sans-serif' }}>내 정보</h2>
+                    <p style={{ fontSize: '18px', color: '#333', fontFamily: 'Paperlogy, sans-serif' }}>
+                        <strong>닉네임:</strong> {currentUser}
+                    </p>
+                </div>
+
+                <div style={{ background: 'white', padding: '30px', borderRadius: '8px', marginBottom: '30px', boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+                        <h2 style={{ fontSize: '24px', fontFamily: 'Paperlogy, sans-serif' }}>내 포트폴리오</h2>
+                        {!isEditingPortfolio && (
+                            <button
+                                onClick={() => {
+                                    setIsEditingPortfolio(true);
+                                    setPortfolioText(myPortfolio);
+                                }}
+                                style={{
+                                    padding: '8px 16px',
+                                    background: '#EC6363',
+                                    color: 'white',
+                                    border: 'none',
+                                    borderRadius: '6px',
+                                    cursor: 'pointer',
+                                    fontSize: '14px',
+                                    fontWeight: '600',
+                                    fontFamily: 'Paperlogy, sans-serif'
+                                }}
+                            >
+                                수정
+                            </button>
+                        )}
+                    </div>
+                    
+                    {isEditingPortfolio ? (
+                        <>
+                            <textarea
+                                value={portfolioText}
+                                onChange={(e) => setPortfolioText(e.target.value)}
+                                style={{
+                                    width: '100%',
+                                    minHeight: '200px',
+                                    padding: '15px',
+                                    border: '1px solid #ddd',
+                                    borderRadius: '6px',
+                                    fontSize: '14px',
+                                    lineHeight: '1.6',
+                                    fontFamily: 'Paperlogy, sans-serif',
+                                    resize: 'vertical'
+                                }}
+                                placeholder="포트폴리오를 작성해주세요. 경력, 대표작, 전문 분야 등을 자유롭게 작성할 수 있습니다."
+                            />
+                            <div style={{ marginTop: '15px', display: 'flex', gap: '10px' }}>
+                                <button
+                                    onClick={handleSavePortfolio}
+                                    style={{
+                                        padding: '10px 24px',
+                                        background: '#EC6363',
+                                        color: 'white',
+                                        border: 'none',
+                                        borderRadius: '6px',
+                                        cursor: 'pointer',
+                                        fontSize: '14px',
+                                        fontWeight: '600',
+                                        fontFamily: 'Paperlogy, sans-serif'
+                                    }}
+                                >
+                                    저장
+                                </button>
+                                <button
+                                    onClick={handleCancelEdit}
+                                    style={{
+                                        padding: '10px 24px',
+                                        background: '#888',
+                                        color: 'white',
+                                        border: 'none',
+                                        borderRadius: '6px',
+                                        cursor: 'pointer',
+                                        fontSize: '14px',
+                                        fontWeight: '600',
+                                        fontFamily: 'Paperlogy, sans-serif'
+                                    }}
+                                >
+                                    취소
+                                </button>
+                            </div>
+                        </>
+                    ) : (
+                        <p style={{ lineHeight: '1.8', whiteSpace: 'pre-line', color: '#555', fontFamily: 'Paperlogy, sans-serif' }}>
+                            {myPortfolio}
+                        </p>
+                    )}
+                </div>
+
+                <div style={{ background: 'white', padding: '30px', borderRadius: '8px', marginBottom: '30px', boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}>
+                    <h2 style={{ fontSize: '24px', marginBottom: '20px', fontFamily: 'Paperlogy, sans-serif' }}>보낸 연락 ({sentContacts.length})</h2>
+                    {sentContacts.length === 0 ? (
+                        <p style={{ color: '#999', fontFamily: 'Paperlogy, sans-serif' }}>보낸 연락이 없습니다.</p>
+                    ) : (
+                        <div>
+                            {sentContacts.map(contact => (
+                                <div key={contact.id} style={{ padding: '20px', background: '#f9fafb', borderRadius: '8px', marginBottom: '15px' }}>
+                                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
+                                        <strong style={{ color: '#EC6363', fontFamily: 'Paperlogy, sans-serif' }}>받는 사람: {contact.to}</strong>
+                                        <span style={{ color: '#666', fontSize: '14px', fontFamily: 'Paperlogy, sans-serif' }}>{contact.date} {contact.time}</span>
+                                    </div>
+                                    <p style={{ lineHeight: '1.6', fontFamily: 'Paperlogy, sans-serif' }}>{contact.message}</p>
+                                </div>
+                            ))}
+                        </div>
+                    )}
+                </div>
+
+                <div style={{ background: 'white', padding: '30px', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}>
+                    <h2 style={{ fontSize: '24px', marginBottom: '20px', fontFamily: 'Paperlogy, sans-serif' }}>받은 연락 ({receivedContacts.length})</h2>
+                    {receivedContacts.length === 0 ? (
+                        <p style={{ color: '#999', fontFamily: 'Paperlogy, sans-serif' }}>받은 연락이 없습니다.</p>
+                    ) : (
+                        <div>
+                            {receivedContacts.map(contact => (
+                                <div key={contact.id} style={{ padding: '20px', background: '#f9fafb', borderRadius: '8px', marginBottom: '15px' }}>
+                                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
+                                        <strong style={{ color: '#EC6363', fontFamily: 'Paperlogy, sans-serif' }}>보낸 사람: {contact.from}</strong>
+                                        <span style={{ color: '#666', fontSize: '14px', fontFamily: 'Paperlogy, sans-serif' }}>{contact.date} {contact.time}</span>
+                                    </div>
+                                    <p style={{ lineHeight: '1.6', fontFamily: 'Paperlogy, sans-serif' }}>{contact.message}</p>
+                                </div>
+                            ))}
+                        </div>
+                    )}
+                </div>
+            </div>
+        </div>
+    );
+}
+
 // 회원가입 페이지
 function SignupPage({ onNavigate }) {
     const [step, setStep] = useState('role'); // 'role' 또는 'form'
@@ -781,7 +982,7 @@ function SignupPage({ onNavigate }) {
 }
 
 // 시나리오 상세보기 페이지
-function ScenarioDetailPage({ scenarioId, onNavigate }) {
+function ScenarioDetailPage({ scenarioId, onNavigate, currentUser }) {
     const scenario = DUMMY_SCENARIOS.find(s => s.id === scenarioId);
     const [comments, setComments] = useState(scenario?.comments || []);
     const [newComment, setNewComment] = useState('');
@@ -796,7 +997,7 @@ function ScenarioDetailPage({ scenarioId, onNavigate }) {
         if (newComment.trim()) {
             const comment = {
                 id: Date.now(),
-                author: "현재 사용자",
+                author: currentUser || "게스트",
                 text: newComment,
                 date: new Date().toLocaleDateString('ko-KR'),
                 replies: []
@@ -814,7 +1015,7 @@ function ScenarioDetailPage({ scenarioId, onNavigate }) {
                         ...comment,
                         replies: [...(comment.replies || []), {
                             id: Date.now(),
-                            author: "현재 사용자",
+                            author: currentUser || "게스트",
                             text: replyText,
                             date: new Date().toLocaleDateString('ko-KR')
                         }]
@@ -836,11 +1037,12 @@ function ScenarioDetailPage({ scenarioId, onNavigate }) {
                     style={{ 
                         marginBottom: '20px', 
                         padding: '8px 16px', 
-                        background: '#666', 
+                        background: '#888', 
                         color: 'white', 
                         border: 'none', 
                         borderRadius: '4px', 
-                        cursor: 'pointer' 
+                        cursor: 'pointer',
+                        fontFamily: 'Paperlogy, sans-serif'
                     }}
                 >
                     ← 목록으로
@@ -848,8 +1050,8 @@ function ScenarioDetailPage({ scenarioId, onNavigate }) {
                 <div style={{ background: 'white', padding: '40px', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', marginBottom: '20px' }}>
                         <div>
-                            <h1 style={{ fontSize: '32px', marginBottom: '10px' }}>{scenario.title}</h1>
-                            <p style={{ color: '#666', fontSize: '16px' }}>작성자: {scenario.author}</p>
+                            <h1 style={{ fontSize: '32px', marginBottom: '10px', fontFamily: 'Paperlogy, sans-serif' }}>{scenario.title}</h1>
+                            <p style={{ color: '#666', fontSize: '16px', fontFamily: 'Paperlogy, sans-serif' }}>작성자: {scenario.author}</p>
                         </div>
                         <span className="rating-badge" style={{ fontSize: '24px' }}>{scenario.rating}</span>
                     </div>
@@ -858,7 +1060,7 @@ function ScenarioDetailPage({ scenarioId, onNavigate }) {
                             <span key={index} className="tag">{tag}</span>
                         ))}
                     </div>
-                    <div style={{ lineHeight: '1.8', fontSize: '16px', whiteSpace: 'pre-line', marginBottom: '40px' }}>
+                    <div style={{ lineHeight: '1.8', fontSize: '16px', whiteSpace: 'pre-line', marginBottom: '40px', fontFamily: 'Paperlogy, sans-serif' }}>
                         {scenario.fullContent || scenario.description}
                     </div>
 
@@ -866,7 +1068,7 @@ function ScenarioDetailPage({ scenarioId, onNavigate }) {
 
                     {/* 댓글 섹션 */}
                     <div>
-                        <h3 style={{ fontSize: '24px', marginBottom: '20px' }}>댓글 ({comments.length})</h3>
+                        <h3 style={{ fontSize: '24px', marginBottom: '20px', fontFamily: 'Paperlogy, sans-serif' }}>댓글 ({comments.length})</h3>
                         
                         {/* 댓글 작성 */}
                         <div style={{ marginBottom: '30px' }}>
@@ -882,7 +1084,7 @@ function ScenarioDetailPage({ scenarioId, onNavigate }) {
                                     borderRadius: '4px',
                                     fontSize: '14px',
                                     resize: 'vertical',
-                                    fontFamily: 'inherit'
+                                    fontFamily: 'Paperlogy, sans-serif'
                                 }}
                             />
                             <button
@@ -890,13 +1092,14 @@ function ScenarioDetailPage({ scenarioId, onNavigate }) {
                                 style={{
                                     marginTop: '10px',
                                     padding: '10px 20px',
-                                    background: '#7c3aed',
+                                    background: '#EC6363',
                                     color: 'white',
                                     border: 'none',
                                     borderRadius: '4px',
                                     cursor: 'pointer',
                                     fontSize: '14px',
-                                    fontWeight: '600'
+                                    fontWeight: '600',
+                                    fontFamily: 'Paperlogy, sans-serif'
                                 }}
                             >
                                 댓글 작성
@@ -906,23 +1109,24 @@ function ScenarioDetailPage({ scenarioId, onNavigate }) {
                         {/* 댓글 목록 */}
                         <div>
                             {comments.map(comment => (
-                                <div key={comment.id} style={{ marginBottom: '30px', padding: '20px', background: '#f9fafb', borderRadius: '8px' }}>
+                                <div key={comment.id} style={{ marginBottom: '30px', padding: '20px', background: '#f9fafb', borderRadius: '8px', fontFamily: 'Paperlogy, sans-serif' }}>
                                     <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
-                                        <strong>{comment.author}</strong>
-                                        <span style={{ color: '#666', fontSize: '14px' }}>{comment.date}</span>
+                                        <strong style={{ fontFamily: 'Paperlogy, sans-serif' }}>{comment.author}</strong>
+                                        <span style={{ color: '#666', fontSize: '14px', fontFamily: 'Paperlogy, sans-serif' }}>{comment.date}</span>
                                     </div>
-                                    <p style={{ marginBottom: '10px', lineHeight: '1.6' }}>{comment.text}</p>
+                                    <p style={{ marginBottom: '10px', lineHeight: '1.6', fontFamily: 'Paperlogy, sans-serif' }}>{comment.text}</p>
                                     <button
                                         onClick={() => setReplyingTo(replyingTo === comment.id ? null : comment.id)}
                                         style={{
                                             padding: '6px 12px',
                                             background: 'transparent',
-                                            color: '#7c3aed',
-                                            border: '1px solid #7c3aed',
+                                            color: '#EC6363',
+                                            border: '1px solid #EC6363',
                                             borderRadius: '4px',
                                             cursor: 'pointer',
                                             fontSize: '12px',
-                                            fontWeight: '500'
+                                            fontWeight: '500',
+                                            fontFamily: 'Paperlogy, sans-serif'
                                         }}
                                     >
                                         {replyingTo === comment.id ? '취소' : '답글'}
@@ -942,7 +1146,7 @@ function ScenarioDetailPage({ scenarioId, onNavigate }) {
                                                     border: '1px solid #ddd',
                                                     borderRadius: '4px',
                                                     fontSize: '14px',
-                                                    fontFamily: 'inherit'
+                                                    fontFamily: 'Paperlogy, sans-serif'
                                                 }}
                                             />
                                             <button
@@ -950,13 +1154,14 @@ function ScenarioDetailPage({ scenarioId, onNavigate }) {
                                                 style={{
                                                     marginTop: '8px',
                                                     padding: '8px 16px',
-                                                    background: '#7c3aed',
+                                                    background: '#EC6363',
                                                     color: 'white',
                                                     border: 'none',
                                                     borderRadius: '4px',
                                                     cursor: 'pointer',
                                                     fontSize: '13px',
-                                                    fontWeight: '600'
+                                                    fontWeight: '600',
+                                                    fontFamily: 'Paperlogy, sans-serif'
                                                 }}
                                             >
                                                 답글 작성
@@ -968,12 +1173,12 @@ function ScenarioDetailPage({ scenarioId, onNavigate }) {
                                     {comment.replies && comment.replies.length > 0 && (
                                         <div style={{ marginTop: '20px', marginLeft: '30px' }}>
                                             {comment.replies.map(reply => (
-                                                <div key={reply.id} style={{ marginBottom: '15px', padding: '15px', background: 'white', borderRadius: '6px' }}>
+                                                <div key={reply.id} style={{ marginBottom: '15px', padding: '15px', background: 'white', borderRadius: '6px', fontFamily: 'Paperlogy, sans-serif' }}>
                                                     <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
-                                                        <strong style={{ fontSize: '14px' }}>↳ {reply.author}</strong>
-                                                        <span style={{ color: '#666', fontSize: '12px' }}>{reply.date}</span>
+                                                        <strong style={{ fontSize: '14px', fontFamily: 'Paperlogy, sans-serif' }}>↳ {reply.author}</strong>
+                                                        <span style={{ color: '#666', fontSize: '12px', fontFamily: 'Paperlogy, sans-serif' }}>{reply.date}</span>
                                                     </div>
-                                                    <p style={{ fontSize: '14px', lineHeight: '1.6' }}>{reply.text}</p>
+                                                    <p style={{ fontSize: '14px', lineHeight: '1.6', fontFamily: 'Paperlogy, sans-serif' }}>{reply.text}</p>
                                                 </div>
                                             ))}
                                         </div>
@@ -993,6 +1198,7 @@ function App() {
     const [currentPage, setCurrentPage] = useState('home');
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [currentUser, setCurrentUser] = useState(null);
+    const [contacts, setContacts] = useState([]); // 연락 내역 저장
 
     const handleLogin = (userId) => {
         setIsLoggedIn(true);
@@ -1005,11 +1211,23 @@ function App() {
         setCurrentPage('home');
     };
 
+    const handleSendContact = (recipientName, message) => {
+        const newContact = {
+            id: Date.now(),
+            from: currentUser,
+            to: recipientName,
+            message: message,
+            date: new Date().toLocaleDateString('ko-KR'),
+            time: new Date().toLocaleTimeString('ko-KR')
+        };
+        setContacts([...contacts, newContact]);
+    };
+
     const renderPage = () => {
         // 시나리오 상세보기
         if (currentPage.startsWith('scenario-detail-')) {
             const scenarioId = parseInt(currentPage.replace('scenario-detail-', ''));
-            return <ScenarioDetailPage scenarioId={scenarioId} onNavigate={setCurrentPage} />;
+            return <ScenarioDetailPage scenarioId={scenarioId} onNavigate={setCurrentPage} currentUser={currentUser} />;
         }
         
         // 팀원 상세보기
@@ -1026,11 +1244,12 @@ function App() {
                                 style={{ 
                                     marginBottom: '20px', 
                                     padding: '8px 16px', 
-                                    background: '#666', 
+                                    background: '#888', 
                                     color: 'white', 
                                     border: 'none', 
                                     borderRadius: '4px', 
-                                    cursor: 'pointer' 
+                                    cursor: 'pointer',
+                                    fontFamily: 'Paperlogy, sans-serif'
                                 }}
                             >
                                 ← 목록으로
@@ -1038,8 +1257,8 @@ function App() {
                             <div style={{ background: 'white', padding: '40px', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}>
                                 <div style={{ textAlign: 'center', marginBottom: '30px' }}>
                                     <div style={{ fontSize: '80px', marginBottom: '20px' }}>{member.avatar}</div>
-                                    <h1 style={{ fontSize: '32px', marginBottom: '10px' }}>{member.name}</h1>
-                                    <p style={{ color: '#7c3aed', fontSize: '18px', fontWeight: '600', marginBottom: '20px' }}>{member.role}</p>
+                                    <h1 style={{ fontSize: '32px', marginBottom: '10px', fontFamily: 'Paperlogy, sans-serif' }}>{member.name}</h1>
+                                    <p style={{ color: '#EC6363', fontSize: '18px', fontWeight: '600', marginBottom: '20px', fontFamily: 'Paperlogy, sans-serif' }}>{member.role}</p>
                                     
                                     <div style={{ display: 'flex', gap: '10px', justifyContent: 'center', marginBottom: '20px' }}>
                                         {member.skills.map((skill, index) => (
@@ -1049,21 +1268,28 @@ function App() {
 
                                     <button
                                         onClick={() => {
+                                            if (!isLoggedIn) {
+                                                alert('로그인이 필요합니다!');
+                                                setCurrentPage('login');
+                                                return;
+                                            }
                                             const message = prompt(`${member.name}님에게 전달할 메시지를 입력하세요:`);
-                                            if (message) {
-                                                alert(`메시지가 전송되었습니다:\n\n${message}`);
+                                            if (message && message.trim()) {
+                                                handleSendContact(member.name, message);
+                                                alert(`${member.name}님에게 메시지를 전송했습니다!`);
                                             }
                                         }}
                                         style={{
                                             padding: '12px 32px',
-                                            background: '#7c3aed',
+                                            background: '#EC6363',
                                             color: 'white',
                                             border: 'none',
                                             borderRadius: '8px',
                                             cursor: 'pointer',
                                             fontSize: '16px',
                                             fontWeight: '600',
-                                            marginTop: '10px'
+                                            marginTop: '10px',
+                                            fontFamily: 'Paperlogy, sans-serif'
                                         }}
                                     >
                                         💬 연락하기
@@ -1073,8 +1299,15 @@ function App() {
                                 <hr style={{ margin: '40px 0', border: 'none', borderTop: '1px solid #ddd' }} />
 
                                 <div style={{ textAlign: 'left' }}>
-                                    <h3 style={{ fontSize: '24px', marginBottom: '15px' }}>소개</h3>
-                                    <p style={{ lineHeight: '1.8', marginBottom: '30px' }}>{member.description}</p>
+                                    <h3 style={{ fontSize: '24px', marginBottom: '15px', fontFamily: 'Paperlogy, sans-serif' }}>소개</h3>
+                                    <p style={{ lineHeight: '1.8', marginBottom: '30px', fontFamily: 'Paperlogy, sans-serif' }}>{member.description}</p>
+                                    
+                                    {member.portfolio && (
+                                        <>
+                                            <h3 style={{ fontSize: '24px', marginBottom: '15px', fontFamily: 'Paperlogy, sans-serif' }}>포트폴리오</h3>
+                                            <p style={{ lineHeight: '1.8', whiteSpace: 'pre-line', fontFamily: 'Paperlogy, sans-serif' }}>{member.portfolio}</p>
+                                        </>
+                                    )}
                                 </div>
                             </div>
                         </div>
@@ -1088,6 +1321,8 @@ function App() {
                 return <HomePage onNavigate={setCurrentPage} />;
             case 'team':
                 return <TeamPage onNavigate={setCurrentPage} />;
+            case 'mypage':
+                return <MyPage contacts={contacts} currentUser={currentUser} isLoggedIn={isLoggedIn} onNavigate={setCurrentPage} />;
             case 'scenario-select':
                 return <ScenarioSelectPage onNavigate={setCurrentPage} />;
             case 'scenario-direct':
