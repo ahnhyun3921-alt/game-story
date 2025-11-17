@@ -497,7 +497,7 @@ function TeamPage() {
     return (
         <div className="main-content">
             <div className="team-banner">
-                <img src="./images/team-banner.png" alt="팀 캐릭터" className="team-banner-image" />
+                <img src="./images/team-banner.png" alt="팀 배너" className="team-banner-image" />
                 <h1 className="team-title">함께할 팀원을 찾아보세요!</h1>
             </div>
 
