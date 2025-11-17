@@ -187,20 +187,29 @@ body {
     padding: 0;
     background: white;
     margin: 0 -40px 40px -40px;
+    position: relative;
+    overflow: hidden;
 }
 
 .banner-title {
-    font-size: 36px;
+    font-size: 48px;
     font-weight: 700;
-    color: #E85F5C;
-    margin-bottom: 20px;
-    letter-spacing: -1px;
-    padding: 60px 20px 20px;
+    color: #ff6b6b;
+    position: absolute;
+    top: 50%;
+    right: 10%;
+    transform: translateY(-50%);
+    text-align: right;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    line-height: 1.4;
+    margin: 0;
+    z-index: 10;
 }
 
 .banner-characters {
     width: 100%;
     margin: 0;
+    position: relative;
 }
 
 .banner-image {
@@ -208,6 +217,7 @@ body {
     height: auto;
     display: block;
     object-fit: cover;
+    min-height: 400px;
 }
 
 .character {
@@ -819,8 +829,9 @@ body {
     }
 
     .banner-title {
-        font-size: 24px;
-        padding: 40px 20px 20px;
+        font-size: 28px;
+        right: 5%;
+        text-shadow: 2px 2px 6px rgba(0,0,0,0.2);
     }
 
     .card-grid {
@@ -844,5 +855,257 @@ body {
     .method-icon {
         width: 50px;
         height: 50px;
+    }
+}
+
+/* �곸꽭蹂닿린 �섏씠吏� �ㅽ��� */
+.detail-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.detail-container h1 {
+    color: #333;
+    font-weight: 700;
+}
+
+.detail-container h3 {
+    color: #333;
+    font-weight: 600;
+}
+
+.detail-container p {
+    color: #555;
+    line-height: 1.6;
+}
+
+/* �볤� �뱀뀡 �ㅽ��� */
+.comment-section {
+    margin-top: 40px;
+}
+
+.comment-item {
+    background: #f9fafb;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.comment-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.comment-author {
+    font-weight: 600;
+    color: #333;
+}
+
+.comment-date {
+    color: #999;
+    font-size: 14px;
+}
+
+.comment-text {
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.reply-button {
+    padding: 6px 12px;
+    background: transparent;
+    color: #7c3aed;
+    border: 1px solid #7c3aed;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.reply-button:hover {
+    background: #7c3aed;
+    color: white;
+}
+
+.reply-section {
+    margin-top: 15px;
+    margin-left: 20px;
+    padding: 15px;
+    background: white;
+    border-radius: 6px;
+}
+
+.reply-item {
+    margin-bottom: 15px;
+    padding: 15px;
+    background: white;
+    border-radius: 6px;
+}
+
+/* �곕씫�섍린 �� �ㅽ��� */
+.contact-form {
+    margin-top: 30px;
+    padding: 30px;
+    background: #f9fafb;
+    border-radius: 8px;
+    border: 2px solid #7c3aed;
+}
+
+.contact-form h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.contact-form textarea {
+    width: 100%;
+    min-height: 150px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: inherit;
+    resize: vertical;
+    margin-bottom: 15px;
+}
+
+.contact-form textarea:focus {
+    outline: none;
+    border-color: #7c3aed;
+}
+
+.contact-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.send-button {
+    padding: 10px 24px;
+    background: #7c3aed;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.send-button:hover {
+    background: #6d28d9;
+}
+
+.cancel-button {
+    padding: 10px 24px;
+    background: #e5e7eb;
+    color: #374151;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.cancel-button:hover {
+    background: #d1d5db;
+}
+
+/* ���� �곸꽭蹂닿린 �ㅽ��� */
+.member-detail-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.member-detail-avatar {
+    font-size: 80px;
+    margin-bottom: 20px;
+}
+
+.member-detail-name {
+    font-size: 32px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.member-detail-role {
+    color: #7c3aed;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.contact-button {
+    padding: 12px 32px;
+    background: #7c3aed;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 10px;
+    transition: all 0.2s;
+}
+
+.contact-button:hover {
+    background: #6d28d9;
+    transform: translateY(-2px);
+}
+
+/* �ㅻ줈媛�湲� 踰꾪듉 �ㅽ��� */
+.back-button {
+    margin-bottom: 20px;
+    padding: 8px 16px;
+    background: #666;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s;
+}
+
+.back-button:hover {
+    background: #555;
+}
+
+/* 諛섏쓳�� �붿옄�� - �곸꽭蹂닿린 �섏씠吏� */
+@media (max-width: 768px) {
+    .detail-container {
+        padding: 20px 15px;
+    }
+
+    .detail-container h1 {
+        font-size: 24px;
+    }
+
+    .detail-container h3 {
+        font-size: 20px;
+    }
+
+    .member-detail-avatar {
+        font-size: 60px;
+    }
+
+    .member-detail-name {
+        font-size: 24px;
+    }
+
+    .member-detail-role {
+        font-size: 16px;
+    }
+
+    .contact-form {
+        padding: 20px;
+    }
+
+    .comment-item,
+    .reply-item {
+        padding: 15px;
     }
 }
