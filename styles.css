@@ -1,4 +1,4 @@
-/* 폰트 정의 */
+/* �고듃 �뺤쓽 */
 @font-face {
     font-family: 'Paperlogy';
     src: url('./fonts/Paperlogy-4Regular.ttf') format('truetype');
@@ -27,7 +27,7 @@
     font-style: normal;
 }
 
-/* 기본 스타일 */
+/* 湲곕낯 �ㅽ��� */
 * {
     margin: 0;
     padding: 0;
@@ -40,7 +40,7 @@ body {
     color: #333;
 }
 
-/* 헤더 */
+/* �ㅻ뜑 */
 .header {
     background-color: white;
     border-bottom: 1px solid #e0e0e0;
@@ -62,6 +62,11 @@ body {
     gap: 12px;
     text-decoration: none;
     color: #333;
+}
+
+.logo-image {
+    height: 36px;
+    width: auto;
 }
 
 .logo-icon {
@@ -119,13 +124,14 @@ body {
 }
 
 .notification-icon {
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
     cursor: pointer;
     position: relative;
+    object-fit: contain;
 }
 
-/* 알림 드롭다운 */
+/* �뚮┝ �쒕∼�ㅼ슫 */
 .notification-dropdown {
     position: absolute;
     right: 40px;
@@ -168,14 +174,14 @@ body {
     line-height: 1.5;
 }
 
-/* 메인 컨텐츠 */
+/* 硫붿씤 而⑦뀗痢� */
 .main-content {
     max-width: 1400px;
     margin: 0 auto;
     padding: 40px;
 }
 
-/* 배너 */
+/* 諛곕꼫 */
 .banner {
     text-align: center;
     padding: 60px 20px;
@@ -199,13 +205,20 @@ body {
     margin: 40px 0;
 }
 
+.banner-image {
+    max-width: 100%;
+    height: auto;
+    max-height: 300px;
+    object-fit: contain;
+}
+
 .character {
     width: 180px;
     height: 180px;
     object-fit: contain;
 }
 
-/* 검색 섹션 */
+/* 寃��� �뱀뀡 */
 .search-section {
     display: flex;
     gap: 16px;
@@ -248,7 +261,7 @@ body {
     background-color: #d54f4c;
 }
 
-/* 카드 그리드 */
+/* 移대뱶 洹몃━�� */
 .card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -320,7 +333,7 @@ body {
     font-weight: 600;
 }
 
-/* 시나리오 작성 페이지 */
+/* �쒕굹由ъ삤 �묒꽦 �섏씠吏� */
 .scenario-create {
     text-align: center;
     padding: 60px 20px;
@@ -356,9 +369,10 @@ body {
 }
 
 .method-icon {
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
     margin: 0 auto 20px;
+    object-fit: contain;
 }
 
 .method-title {
@@ -391,7 +405,7 @@ body {
     background-color: #d54f4c;
 }
 
-/* 작성 페이지 */
+/* �묒꽦 �섏씠吏� */
 .create-page {
     max-width: 1200px;
     margin: 0 auto;
@@ -400,9 +414,10 @@ body {
 }
 
 .create-character {
-    width: 120px;
-    height: 120px;
+    width: 100px;
+    height: 100px;
     margin: 0 auto 32px;
+    object-fit: contain;
 }
 
 .textarea-large {
@@ -436,7 +451,7 @@ body {
     background-color: #d54f4c;
 }
 
-/* 파일 업로드 */
+/* �뚯씪 �낅줈�� */
 .upload-section {
     max-width: 600px;
     margin: 0 auto 32px;
@@ -476,7 +491,7 @@ body {
     color: #333;
 }
 
-/* 선택 배너 */
+/* �좏깮 諛곕꼫 */
 .selection-banner {
     text-align: center;
     padding: 80px 20px;
@@ -485,6 +500,14 @@ body {
     margin-bottom: 60px;
     position: relative;
     overflow: hidden;
+}
+
+.selection-banner-image {
+    max-width: 400px;
+    width: 100%;
+    height: auto;
+    margin: 0 auto 20px;
+    object-fit: contain;
 }
 
 .banner-ghost {
@@ -506,13 +529,21 @@ body {
     line-height: 1.4;
 }
 
-/* 팀원 찾기 */
+/* ���� 李얘린 */
 .team-banner {
     text-align: center;
     padding: 80px 20px;
     background: linear-gradient(135deg, #fff5e6 0%, #f0f0f0 100%);
     border-radius: 16px;
     margin-bottom: 60px;
+}
+
+.team-banner-image {
+    max-width: 500px;
+    width: 100%;
+    height: auto;
+    margin: 0 auto 32px;
+    object-fit: contain;
 }
 
 .team-character {
@@ -591,7 +622,7 @@ body {
     margin-bottom: 8px;
 }
 
-/* 로그인/회원가입 */
+/* 濡쒓렇��/�뚯썝媛��� */
 .auth-page {
     max-width: 500px;
     margin: 80px auto;
@@ -681,7 +712,7 @@ body {
     background-color: #d54f4c;
 }
 
-/* 역할 선택 */
+/* ��븷 �좏깮 */
 .role-selection {
     max-width: 1000px;
     margin: 80px auto;
@@ -729,13 +760,14 @@ body {
 }
 
 .role-image {
-    width: 200px;
-    height: 200px;
+    width: 100%;
+    max-width: 250px;
+    height: auto;
     margin: 0 auto;
     object-fit: contain;
 }
 
-/* 반응형 */
+/* 諛섏쓳�� */
 @media (max-width: 1024px) {
     .header-content,
     .main-content {
@@ -763,6 +795,10 @@ body {
     .logo-text {
         font-size: 20px;
     }
+    
+    .logo-image {
+        height: 28px;
+    }
 
     .nav-menu {
         gap: 20px;
@@ -774,6 +810,18 @@ body {
 
     .banner-title {
         font-size: 28px;
+    }
+    
+    .banner-image {
+        max-height: 200px;
+    }
+    
+    .selection-banner-image {
+        max-width: 250px;
+    }
+    
+    .team-banner-image {
+        max-width: 300px;
     }
 
     .card-grid {
@@ -790,5 +838,10 @@ body {
 
     .team-title {
         font-size: 32px;
+    }
+    
+    .method-icon {
+        width: 50px;
+        height: 50px;
     }
 }
