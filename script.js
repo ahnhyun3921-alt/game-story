@@ -581,9 +581,9 @@ function TeamPage({ onNavigate }) {
     };
 
     return (
-        <div className="main-content">
-            <div className="team-banner" style={{ position: 'relative', marginBottom: 0 }}>
-                <img src="./images/team-banner.png" alt="팀 배너" className="team-banner-image" style={{ width: '100%', display: 'block', marginBottom: 0 }} />
+        <div className="main-content" style={{ paddingTop: 0 }}>
+            <div className="team-banner" style={{ position: 'relative', margin: 0, padding: 0 }}>
+                <img src="./images/team-banner.png" alt="팀 배너" className="team-banner-image" style={{ width: '100%', display: 'block', margin: 0, padding: 0, verticalAlign: 'bottom' }} />
                 <h1 className="team-title" style={{ 
                     position: 'absolute',
                     bottom: '20%',
@@ -1157,9 +1157,16 @@ function SignupPage({ onNavigate }) {
 
     if (step === 'role') {
         return (
-            <div className="role-selection">
-                <h1 className="page-title" style={{ textAlign: 'center' }}>회원 가입</h1>
-                <p className="auth-subtitle" style={{ textAlign: 'center' }}>간편한 회원가입으로 게임스토리를 사용하세요.</p>
+            <div className="role-selection" style={{ 
+                display: 'flex', 
+                flexDirection: 'column', 
+                justifyContent: 'center', 
+                alignItems: 'center',
+                minHeight: '80vh',
+                padding: '40px 20px'
+            }}>
+                <h1 className="page-title" style={{ textAlign: 'center', marginBottom: '16px' }}>회원 가입</h1>
+                <p className="auth-subtitle" style={{ textAlign: 'center', marginBottom: '40px' }}>간편한 회원가입으로 게임스토리를 사용하세요.</p>
                 
                 <div className="role-cards">
                     <div 
