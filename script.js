@@ -92,7 +92,11 @@ const DUMMY_TEAM_MEMBERS = [
         description: "감성적인 연출과 복잡한의 분기 구조 설계에 특화된 제작자입니다. 감동을 주는 게임을 함께 만들어가고!",
         skills: ["연출", "UX", "비주얼 노벨"],
         avatar: "🔥",
-        portfolio: "3년차 비주얼 노벨 제작자입니다.\n대표작: '봄날의 약속', '겨울 이야기'\n\n주요 경력:\n- 인디 게임 '봄날의 약속' 시나리오 및 연출 (2022)\n- 비주얼 노벨 '겨울 이야기' 기획 및 제작 (2023)\n- 다수의 게임잼 참가 경험"
+        portfolio: "3년차 비주얼 노벨 제작자입니다.\n대표작: '봄날의 약속', '겨울 이야기'\n\n주요 경력:\n- 인디 게임 '봄날의 약속' 시나리오 및 연출 (2022)\n- 비주얼 노벨 '겨울 이야기' 기획 및 제작 (2023)\n- 다수의 게임잼 참가 경험",
+        portfolioLinks: [
+            { id: 1, title: "게임 포트폴리오", url: "https://redflame-portfolio.com" },
+            { id: 2, title: "Itch.io 작품", url: "https://itch.io/redflame" }
+        ]
     },
     {
         id: 2,
@@ -101,7 +105,11 @@ const DUMMY_TEAM_MEMBERS = [
         description: "미스터리와 스릴러 장르에 강점이 있으며 긴장감 넘치는 스토리를 구성합니다. 함께 프로젝트를 진행할 작가를 찾습니다!",
         skills: ["미스터리", "스릴러", "시나리오"],
         avatar: "💧",
-        portfolio: "5년차 게임 시나리오 작가입니다.\n대표작: '어둠 속의 진실', '밤의 목격자'\n\n전문 분야: 미스터리, 스릴러 장르"
+        portfolio: "5년차 게임 시나리오 작가입니다.\n대표작: '어둠 속의 진실', '밤의 목격자'\n\n전문 분야: 미스터리, 스릴러 장르",
+        portfolioLinks: [
+            { id: 1, title: "작품 목록", url: "https://bluedrop-works.com" },
+            { id: 2, title: "브런치 글", url: "https://brunch.co.kr/@bluedrop" }
+        ]
     },
     {
         id: 3,
@@ -110,7 +118,10 @@ const DUMMY_TEAM_MEMBERS = [
         description: "방대한 세계관 구축과 캐릭터 디자인에 능숙합니다. 함께 거대한 판타지 세계를 만들 동료를 구합니다!",
         skills: ["세계관", "캐릭터 디자인", "RPG"],
         avatar: "🌱",
-        portfolio: "판타지 세계관 전문 작가, 4년 경력\n대표작: '에테르 연대기', '고대의 숲'"
+        portfolio: "판타지 세계관 전문 작가, 4년 경력\n대표작: '에테르 연대기', '고대의 숲'",
+        portfolioLinks: [
+            { id: 1, title: "아트스테이션", url: "https://artstation.com/greenleaf" }
+        ]
     },
     {
         id: 4,
@@ -119,7 +130,11 @@ const DUMMY_TEAM_MEMBERS = [
         description: "역사적 고증과 전략 게임 밸런싱에 전문성을 가지고 있습니다. 깊이 있는 전략 게임을 만들고 싶은 분을 찾습니다!",
         skills: ["전략", "밸런싱", "역사"],
         avatar: "👑",
-        portfolio: "역사 시뮬레이션 게임 디자이너, 6년 경력\n대표작: '삼국지 외전', '제국의 흥망'"
+        portfolio: "역사 시뮬레이션 게임 디자이너, 6년 경력\n대표작: '삼국지 외전', '제국의 흥망'",
+        portfolioLinks: [
+            { id: 1, title: "게임 디자인 블로그", url: "https://goldcrown-gamedesign.blog" },
+            { id: 2, title: "Steam 작품", url: "https://steam.com/goldcrown" }
+        ]
     },
     {
         id: 5,
@@ -128,7 +143,10 @@ const DUMMY_TEAM_MEMBERS = [
         description: "다이나믹한 전투 시스템과 스킬 트리 설계를 전문으로 합니다. 함께 박진감 넘치는 게임을 만들 파트너를 구합니다!",
         skills: ["전투 시스템", "액션", "RPG"],
         avatar: "⚔️",
-        portfolio: "액션 RPG 전투 시스템 디자이너, 5년 경력\n대표작: '검의 전설', '전쟁의 서막'"
+        portfolio: "액션 RPG 전투 시스템 디자이너, 5년 경력\n대표작: '검의 전설', '전쟁의 서막'",
+        portfolioLinks: [
+            { id: 1, title: "YouTube 플레이 영상", url: "https://youtube.com/@silverknight" }
+        ]
     },
     {
         id: 6,
@@ -137,7 +155,11 @@ const DUMMY_TEAM_MEMBERS = [
         description: "독창적인 마법 시스템과 판타지 세계관 구축에 강점이 있습니다. 환상적인 세계를 함께 만들 작가를 찾습니다!",
         skills: ["마법 시스템", "판타지", "세계관"],
         avatar: "🔮",
-        portfolio: "마법 시스템 설계 전문, 4년 경력\n대표작: '마법사의 탑', '영원한 마나'"
+        portfolio: "마법 시스템 설계 전문, 4년 경력\n대표작: '마법사의 탑', '영원한 마나'",
+        portfolioLinks: [
+            { id: 1, title: "개인 웹사이트", url: "https://violetmagic.com" },
+            { id: 2, title: "Notion 포트폴리오", url: "https://notion.so/violetmagic" }
+        ]
     },
     {
         id: 7,
@@ -146,7 +168,10 @@ const DUMMY_TEAM_MEMBERS = [
         description: "심리적 공포와 서스펜스 연출에 특화되어 있습니다. 함께 등골이 오싹한 게임을 만들 동료를 찾습니다!",
         skills: ["호러", "심리", "연출"],
         avatar: "👻",
-        portfolio: "호러 게임 연출가, 3년 경력\n대표작: '어둠의 숨결', '공포의 저택'"
+        portfolio: "호러 게임 연출가, 3년 경력\n대표작: '어둠의 숨결', '공포의 저택'",
+        portfolioLinks: [
+            { id: 1, title: "공포 게임 컬렉션", url: "https://darkshadow.itch.io" }
+        ]
     },
     {
         id: 8,
@@ -155,7 +180,11 @@ const DUMMY_TEAM_MEMBERS = [
         description: "따뜻하고 감성적인 스토리텔링과 평화로운 게임 플레이 디자인이 전문입니다. 치유가 되는 게임을 만들고 싶은 분 환영합니다!",
         skills: ["힐링", "감성", "스토리텔링"],
         avatar: "☁️",
-        portfolio: "힐링 게임 스토리텔러, 4년 경력\n대표작: '작은 정원', '따뜻한 하루'"
+        portfolio: "힐링 게임 스토리텔러, 4년 경력\n대표작: '작은 정원', '따뜻한 하루'",
+        portfolioLinks: [
+            { id: 1, title: "포트폴리오 사이트", url: "https://whitedream.studio" },
+            { id: 2, title: "인스타그램", url: "https://instagram.com/whitedream_studio" }
+        ]
     }
 ];
 
@@ -1638,6 +1667,39 @@ function App() {
                                 <div style={{ textAlign: 'left' }}>
                                     <h3 style={{ fontSize: '24px', marginBottom: '15px', fontFamily: 'Paperlogy, sans-serif' }}>소개</h3>
                                     <p style={{ lineHeight: '1.8', marginBottom: '30px', fontFamily: 'Paperlogy, sans-serif' }}>{member.description}</p>
+                                    
+                                    {member.portfolioLinks && member.portfolioLinks.length > 0 && (
+                                        <>
+                                            <h3 style={{ fontSize: '24px', marginBottom: '15px', fontFamily: 'Paperlogy, sans-serif' }}>🔗 포트폴리오 링크</h3>
+                                            <div style={{ display: 'grid', gap: '12px', marginBottom: '30px' }}>
+                                                {member.portfolioLinks.map(link => (
+                                                    <div key={link.id} style={{ 
+                                                        background: '#f8f9fa', 
+                                                        padding: '16px 20px', 
+                                                        borderRadius: '8px',
+                                                        border: '1px solid #e0e0e0'
+                                                    }}>
+                                                        <div style={{ fontWeight: '600', marginBottom: '5px', fontFamily: 'Paperlogy, sans-serif' }}>
+                                                            {link.title}
+                                                        </div>
+                                                        <a 
+                                                            href={link.url} 
+                                                            target="_blank" 
+                                                            rel="noopener noreferrer"
+                                                            style={{ 
+                                                                color: '#EC6363', 
+                                                                textDecoration: 'none',
+                                                                fontSize: '14px',
+                                                                fontFamily: 'Paperlogy, sans-serif'
+                                                            }}
+                                                        >
+                                                            {link.url} ↗
+                                                        </a>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </>
+                                    )}
                                     
                                     {member.portfolio && (
                                         <>
