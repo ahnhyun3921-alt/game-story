@@ -586,7 +586,7 @@ function TeamPage({ onNavigate }) {
                 <img src="./images/team-banner.png" alt="팀 배너" className="team-banner-image" style={{ width: '100%', display: 'block', margin: 0, padding: 0, verticalAlign: 'bottom' }} />
                 <h1 className="team-title" style={{ 
                     position: 'absolute',
-                    bottom: '20%',
+                    bottom: '10%',
                     right: '8%',
                     textAlign: 'right',
                     margin: 0,
@@ -594,7 +594,7 @@ function TeamPage({ onNavigate }) {
                 }}>함께할 팀원을 찾아보세요!</h1>
             </div>
 
-            <div className="search-section">
+            <div className="search-section" style={{ marginTop: '50px' }}>
                 <select 
                     className="filter-dropdown"
                     value={filter}
@@ -1173,8 +1173,8 @@ function SignupPage({ onNavigate }) {
                         className="role-card"
                         onClick={() => handleRoleSelect('creator')}
                         style={{ 
-                            background: '#1a1a1a',
-                            border: '2px solid #2a2a2a'
+                            background: '#2A2426',
+                            border: '2px solid #3A3436'
                         }}
                     >
                         <h2 className="role-title">제작자에요</h2>
