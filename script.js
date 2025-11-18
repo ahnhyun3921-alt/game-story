@@ -329,7 +329,7 @@ function HomePage({ onNavigate }) {
 
     return (
         <div className="main-content">
-            <div className="banner" style={{ position: 'relative' }}>
+            <div className="banner" style={{ position: 'relative', width: '100%', height: '400px', overflow: 'hidden' }}>
                 <h1 className="banner-title" style={{ 
                     position: 'absolute',
                     top: '15%',
@@ -337,10 +337,11 @@ function HomePage({ onNavigate }) {
                     transform: 'translateX(-50%)',
                     textAlign: 'center',
                     zIndex: 10,
-                    margin: 0
+                    margin: 0,
+                    textShadow: 'none'
                 }}>머리 속의 이야기에서 손끝의 게임으로</h1>
                 <div className="banner-characters">
-                    <img src="./images/start-banner.png" alt="캐릭터들" className="banner-image" />
+                    <img src="./images/start-banner.png" alt="캐릭터들" className="banner-image" style={{ width: '100%', display: 'block', height: '400px', objectFit: 'cover' }} />
                 </div>
             </div>
 
@@ -400,8 +401,8 @@ function HomePage({ onNavigate }) {
 function ScenarioSelectPage({ onNavigate }) {
     return (
         <div className="main-content">
-            <div className="selection-banner" style={{ position: 'relative' }}>
-                <img src="./images/select-banner.png" alt="배너" className="selection-banner-image" style={{ width: '100%', display: 'block' }} />
+            <div className="selection-banner" style={{ position: 'relative', width: '100%', height: '400px', overflow: 'hidden' }}>
+                <img src="./images/select-banner.png" alt="배너" className="selection-banner-image" style={{ width: '100%', display: 'block', height: '400px', objectFit: 'cover' }} />
                 <h1 className="banner-text" style={{ 
                     position: 'absolute', 
                     bottom: '15%', 
@@ -413,7 +414,8 @@ function ScenarioSelectPage({ onNavigate }) {
                     lineHeight: '1.4',
                     margin: 0,
                     zIndex: 10,
-                    fontFamily: 'Paperlogy, sans-serif'
+                    fontFamily: 'Paperlogy, sans-serif',
+                    textShadow: 'none'
                 }}>
                     내 상상 속 멋진 이야기를<br />시나리오로 써보세요!
                 </h1>
@@ -582,15 +584,16 @@ function TeamPage({ onNavigate }) {
 
     return (
         <div className="main-content" style={{ paddingTop: 0 }}>
-            <div className="team-banner" style={{ position: 'relative', margin: 0, padding: 0 }}>
-                <img src="./images/team-banner.png" alt="팀 배너" className="team-banner-image" style={{ width: '100%', display: 'block', margin: 0, padding: 0, verticalAlign: 'bottom' }} />
+            <div className="team-banner" style={{ position: 'relative', margin: 0, padding: 0, width: '100%', height: '400px', overflow: 'hidden' }}>
+                <img src="./images/team-banner.png" alt="팀 배너" className="team-banner-image" style={{ width: '100%', display: 'block', margin: 0, padding: 0, verticalAlign: 'bottom', height: '400px', objectFit: 'cover' }} />
                 <h1 className="team-title" style={{ 
                     position: 'absolute',
-                    bottom: '10%',
-                    right: '8%',
+                    bottom: '15%',
+                    right: '5%',
                     textAlign: 'right',
                     margin: 0,
-                    zIndex: 10
+                    zIndex: 10,
+                    textShadow: 'none'
                 }}>함께할 팀원을 찾아보세요!</h1>
             </div>
 
