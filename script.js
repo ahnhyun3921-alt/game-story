@@ -339,7 +339,7 @@ function HomePage({ onNavigate }) {
                     zIndex: 10,
                     margin: 0,
                     textShadow: 'none'
-                }}>머리 속의 이야기에서 손끝의 게임으로</h1>
+                }}>머리 속의 이야기에서<br />손끝의 게임으로</h1>
                 <div className="banner-characters">
                     <img src="./images/start-banner.png" alt="캐릭터들" className="banner-image" style={{ width: '100%', display: 'block', height: '400px', objectFit: 'cover' }} />
                 </div>
@@ -405,7 +405,7 @@ function ScenarioSelectPage({ onNavigate }) {
                 <img src="./images/select-banner.png" alt="배너" className="selection-banner-image" style={{ width: '100%', display: 'block', height: '400px', objectFit: 'cover' }} />
                 <h1 className="banner-text" style={{ 
                     position: 'absolute', 
-                    bottom: '15%', 
+                    bottom: '8%', 
                     right: '5%',
                     textAlign: 'right',
                     fontSize: '48px',
@@ -588,7 +588,7 @@ function TeamPage({ onNavigate }) {
                 <img src="./images/team-banner.png" alt="팀 배너" className="team-banner-image" style={{ width: '100%', display: 'block', margin: 0, padding: 0, verticalAlign: 'bottom', height: '400px', objectFit: 'cover' }} />
                 <h1 className="team-title" style={{ 
                     position: 'absolute',
-                    bottom: '15%',
+                    bottom: '8%',
                     right: '5%',
                     textAlign: 'right',
                     margin: 0,
