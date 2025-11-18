@@ -582,8 +582,8 @@ function TeamPage({ onNavigate }) {
 
     return (
         <div className="main-content">
-            <div className="team-banner" style={{ position: 'relative' }}>
-                <img src="./images/team-banner.png" alt="팀 배너" className="team-banner-image" style={{ width: '100%', display: 'block' }} />
+            <div className="team-banner" style={{ position: 'relative', marginBottom: 0 }}>
+                <img src="./images/team-banner.png" alt="팀 배너" className="team-banner-image" style={{ width: '100%', display: 'block', marginBottom: 0 }} />
                 <h1 className="team-title" style={{ 
                     position: 'absolute',
                     bottom: '20%',
@@ -809,10 +809,10 @@ function MyPage({ contacts, currentUser, isLoggedIn, onNavigate, proposals, onPr
                     </p>
                 </div>
 
-                {/* 포트폴리오 링크 섹션 */}
+                {/* 나의 포트폴리오 섹션 */}
                 <div style={{ background: 'white', padding: '30px', borderRadius: '8px', marginBottom: '30px', boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-                        <h2 style={{ fontSize: '24px', fontFamily: 'Paperlogy, sans-serif' }}>🔗 포트폴리오 링크</h2>
+                        <h2 style={{ fontSize: '24px', fontFamily: 'Paperlogy, sans-serif' }}>🔗 나의 포트폴리오</h2>
                         <button
                             onClick={() => setIsAddingLink(true)}
                             style={{
@@ -957,92 +957,6 @@ function MyPage({ contacts, currentUser, isLoggedIn, onNavigate, proposals, onPr
                             </div>
                         ))}
                     </div>
-                </div>
-
-                <div style={{ background: 'white', padding: '30px', borderRadius: '8px', marginBottom: '30px', boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-                        <h2 style={{ fontSize: '24px', fontFamily: 'Paperlogy, sans-serif' }}>내 포트폴리오</h2>
-                        {!isEditingPortfolio && (
-                            <button
-                                onClick={() => {
-                                    setIsEditingPortfolio(true);
-                                    setPortfolioText(myPortfolio);
-                                }}
-                                style={{
-                                    padding: '8px 16px',
-                                    background: '#EC6363',
-                                    color: 'white',
-                                    border: 'none',
-                                    borderRadius: '6px',
-                                    cursor: 'pointer',
-                                    fontSize: '14px',
-                                    fontWeight: '600',
-                                    fontFamily: 'Paperlogy, sans-serif'
-                                }}
-                            >
-                                수정
-                            </button>
-                        )}
-                    </div>
-                    
-                    {isEditingPortfolio ? (
-                        <>
-                            <textarea
-                                value={portfolioText}
-                                onChange={(e) => setPortfolioText(e.target.value)}
-                                style={{
-                                    width: '100%',
-                                    minHeight: '200px',
-                                    padding: '15px',
-                                    border: '1px solid #ddd',
-                                    borderRadius: '6px',
-                                    fontSize: '14px',
-                                    lineHeight: '1.6',
-                                    fontFamily: 'Paperlogy, sans-serif',
-                                    resize: 'vertical'
-                                }}
-                                placeholder="포트폴리오를 작성해주세요. 경력, 대표작, 전문 분야 등을 자유롭게 작성할 수 있습니다."
-                            />
-                            <div style={{ marginTop: '15px', display: 'flex', gap: '10px' }}>
-                                <button
-                                    onClick={handleSavePortfolio}
-                                    style={{
-                                        padding: '10px 24px',
-                                        background: '#EC6363',
-                                        color: 'white',
-                                        border: 'none',
-                                        borderRadius: '6px',
-                                        cursor: 'pointer',
-                                        fontSize: '14px',
-                                        fontWeight: '600',
-                                        fontFamily: 'Paperlogy, sans-serif'
-                                    }}
-                                >
-                                    저장
-                                </button>
-                                <button
-                                    onClick={handleCancelEdit}
-                                    style={{
-                                        padding: '10px 24px',
-                                        background: '#888',
-                                        color: 'white',
-                                        border: 'none',
-                                        borderRadius: '6px',
-                                        cursor: 'pointer',
-                                        fontSize: '14px',
-                                        fontWeight: '600',
-                                        fontFamily: 'Paperlogy, sans-serif'
-                                    }}
-                                >
-                                    취소
-                                </button>
-                            </div>
-                        </>
-                    ) : (
-                        <p style={{ lineHeight: '1.8', whiteSpace: 'pre-line', color: '#555', fontFamily: 'Paperlogy, sans-serif' }}>
-                            {myPortfolio}
-                        </p>
-                    )}
                 </div>
 
                 {/* 내가 보낸 제안 섹션 */}
@@ -1244,8 +1158,8 @@ function SignupPage({ onNavigate }) {
     if (step === 'role') {
         return (
             <div className="role-selection">
-                <h1 className="page-title">회원 가입</h1>
-                <p className="auth-subtitle">간편한 회원가입으로 게임스토리를 사용하세요.</p>
+                <h1 className="page-title" style={{ textAlign: 'center' }}>회원 가입</h1>
+                <p className="auth-subtitle" style={{ textAlign: 'center' }}>간편한 회원가입으로 게임스토리를 사용하세요.</p>
                 
                 <div className="role-cards">
                     <div 
@@ -1268,8 +1182,8 @@ function SignupPage({ onNavigate }) {
                         className="role-card"
                         onClick={() => handleRoleSelect('writer')}
                         style={{ 
-                            background: '#0f0f0f',
-                            border: '2px solid #1f1f1f'
+                            background: '#2A2426',
+                            border: '2px solid #3A3436'
                         }}
                     >
                         <h2 className="role-title">작가에요</h2>
