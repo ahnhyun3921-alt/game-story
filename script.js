@@ -329,8 +329,16 @@ function HomePage({ onNavigate }) {
 
     return (
         <div className="main-content">
-            <div className="banner">
-                <h1 className="banner-title">머리 속의 이야기에서 손끝의 게임으로</h1>
+            <div className="banner" style={{ position: 'relative' }}>
+                <h1 className="banner-title" style={{ 
+                    position: 'absolute',
+                    top: '15%',
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    textAlign: 'center',
+                    zIndex: 10,
+                    margin: 0
+                }}>머리 속의 이야기에서 손끝의 게임으로</h1>
                 <div className="banner-characters">
                     <img src="./images/start-banner.png" alt="캐릭터들" className="banner-image" />
                 </div>
@@ -392,19 +400,19 @@ function HomePage({ onNavigate }) {
 function ScenarioSelectPage({ onNavigate }) {
     return (
         <div className="main-content">
-            <div className="selection-banner" style={{ position: 'relative', textAlign: 'left' }}>
+            <div className="selection-banner" style={{ position: 'relative' }}>
                 <img src="./images/select-banner.png" alt="배너" className="selection-banner-image" style={{ width: '100%', display: 'block' }} />
                 <h1 className="banner-text" style={{ 
                     position: 'absolute', 
-                    top: '50%', 
-                    right: '10%',
-                    transform: 'translateY(-50%)',
+                    bottom: '15%', 
+                    right: '5%',
                     textAlign: 'right',
                     fontSize: '48px',
                     fontWeight: '700',
                     color: '#EC6363',
                     lineHeight: '1.4',
                     margin: 0,
+                    zIndex: 10,
                     fontFamily: 'Paperlogy, sans-serif'
                 }}>
                     내 상상 속 멋진 이야기를<br />시나리오로 써보세요!
@@ -574,9 +582,16 @@ function TeamPage({ onNavigate }) {
 
     return (
         <div className="main-content">
-            <div className="team-banner">
-                <img src="./images/team-banner.png" alt="팀 배너" className="team-banner-image" />
-                <h1 className="team-title">함께할 팀원을 찾아보세요!</h1>
+            <div className="team-banner" style={{ position: 'relative' }}>
+                <img src="./images/team-banner.png" alt="팀 배너" className="team-banner-image" style={{ width: '100%', display: 'block' }} />
+                <h1 className="team-title" style={{ 
+                    position: 'absolute',
+                    bottom: '20%',
+                    right: '8%',
+                    textAlign: 'right',
+                    margin: 0,
+                    zIndex: 10
+                }}>함께할 팀원을 찾아보세요!</h1>
             </div>
 
             <div className="search-section">
@@ -1237,8 +1252,8 @@ function SignupPage({ onNavigate }) {
                         className="role-card"
                         onClick={() => handleRoleSelect('creator')}
                         style={{ 
-                            background: 'linear-gradient(135deg, #FFE5D9 0%, #FFDCC8 100%)',
-                            border: '2px solid #FFD4B8'
+                            background: '#1a1a1a',
+                            border: '2px solid #2a2a2a'
                         }}
                     >
                         <h2 className="role-title">제작자에요</h2>
@@ -1253,8 +1268,8 @@ function SignupPage({ onNavigate }) {
                         className="role-card"
                         onClick={() => handleRoleSelect('writer')}
                         style={{ 
-                            background: 'linear-gradient(135deg, #FFE5F0 0%, #FFD9E8 100%)',
-                            border: '2px solid #FFC9E0'
+                            background: '#0f0f0f',
+                            border: '2px solid #1f1f1f'
                         }}
                     >
                         <h2 className="role-title">작가에요</h2>
