@@ -943,7 +943,7 @@ function MyPage({ contacts, currentUser, isLoggedIn, onNavigate, proposals, onPr
                                     onClick={() => handleDeleteLink(link.id)}
                                     style={{
                                         padding: '6px 12px',
-                                        background: '#ff4444',
+                                        background: '#333333',
                                         color: 'white',
                                         border: 'none',
                                         borderRadius: '4px',
