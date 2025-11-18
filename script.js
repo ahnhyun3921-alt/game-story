@@ -392,36 +392,50 @@ function HomePage({ onNavigate }) {
 function ScenarioSelectPage({ onNavigate }) {
     return (
         <div className="main-content">
-            <div className="selection-banner">
-                <img src="./images/select-banner.png" alt="배너" className="selection-banner-image" />
-                <h1 className="banner-text">내 상상 속 멋진 이야기를<br />시나리오로 써보세요!</h1>
+            <div className="selection-banner" style={{ position: 'relative', textAlign: 'left' }}>
+                <img src="./images/select-banner.png" alt="배너" className="selection-banner-image" style={{ width: '100%', display: 'block' }} />
+                <h1 className="banner-text" style={{ 
+                    position: 'absolute', 
+                    top: '50%', 
+                    right: '10%',
+                    transform: 'translateY(-50%)',
+                    textAlign: 'right',
+                    fontSize: '48px',
+                    fontWeight: '700',
+                    color: '#EC6363',
+                    lineHeight: '1.4',
+                    margin: 0,
+                    fontFamily: 'Paperlogy, sans-serif'
+                }}>
+                    내 상상 속 멋진 이야기를<br />시나리오로 써보세요!
+                </h1>
             </div>
 
             <div className="method-cards">
-                <div className="method-card" onClick={() => onNavigate('scenario-direct')}>
+                <div className="method-card" onClick={() => onNavigate('scenario-direct')} style={{ display: 'flex', flexDirection: 'column' }}>
                     <img src="./images/icon-direct.png" alt="직접 작성" className="method-icon" />
                     <h2 className="method-title">직접 시나리오<br />작성하기</h2>
-                    <p className="method-description">
+                    <p className="method-description" style={{ flex: 1 }}>
                         장르 선택을 바탕으로 제공되는 템플렛을 활용해서<br />
                         더 쉽고 빠르게 시나리오를 작성해보세요.
                     </p>
                     <button className="method-button">시작하기</button>
                 </div>
 
-                <div className="method-card" onClick={() => onNavigate('scenario-ai')}>
+                <div className="method-card" onClick={() => onNavigate('scenario-ai')} style={{ display: 'flex', flexDirection: 'column' }}>
                     <img src="./images/icon-ai.png" alt="AI 작성" className="method-icon" />
                     <h2 className="method-title">AI와 시나리오<br />작성하기</h2>
-                    <p className="method-description">
+                    <p className="method-description" style={{ flex: 1 }}>
                         AI의 도움으로 막힘없이<br />
                         탄탄한 이야기를 완성해보세요.
                     </p>
                     <button className="method-button">시작하기</button>
                 </div>
 
-                <div className="method-card" onClick={() => onNavigate('scenario-upload')}>
+                <div className="method-card" onClick={() => onNavigate('scenario-upload')} style={{ display: 'flex', flexDirection: 'column' }}>
                     <img src="./images/icon-upload.png" alt="업로드" className="method-icon" />
                     <h2 className="method-title">작성한 시나리오<br />업로드하기</h2>
-                    <p className="method-description">
+                    <p className="method-description" style={{ flex: 1 }}>
                         미리 작성한 시나리오를 업로드하고<br />
                         팀원들을 모집해보세요.<br />
                         <span style={{ color: '#EC6363' }}>*Word만 지원됩니다.</span>
@@ -1222,6 +1236,10 @@ function SignupPage({ onNavigate }) {
                     <div 
                         className="role-card"
                         onClick={() => handleRoleSelect('creator')}
+                        style={{ 
+                            background: 'linear-gradient(135deg, #FFE5D9 0%, #FFDCC8 100%)',
+                            border: '2px solid #FFD4B8'
+                        }}
                     >
                         <h2 className="role-title">제작자에요</h2>
                         <p className="role-subtitle">
@@ -1234,6 +1252,10 @@ function SignupPage({ onNavigate }) {
                     <div 
                         className="role-card"
                         onClick={() => handleRoleSelect('writer')}
+                        style={{ 
+                            background: 'linear-gradient(135deg, #FFE5F0 0%, #FFD9E8 100%)',
+                            border: '2px solid #FFC9E0'
+                        }}
                     >
                         <h2 className="role-title">작가에요</h2>
                         <p className="role-subtitle">
