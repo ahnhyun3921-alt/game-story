@@ -1356,7 +1356,7 @@ function LoginPage({ onNavigate, onLogin }) {
     const VALID_ACCOUNT = {
         id: 'ahnhyun9',
         password: 'dksgusWls8&',
-        name: '안현진'
+        name: '이민지'
     };
 
     const handleSubmit = (e) => {
