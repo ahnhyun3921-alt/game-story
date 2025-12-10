@@ -1355,7 +1355,7 @@ function LoginPage({ onNavigate, onLogin }) {
 
     const VALID_ACCOUNT = {
         id: 'ahnhyun9',
-        password: 'dksgusWls8&',
+        password: '1234',
         name: '이민지'
     };
 
@@ -1413,7 +1413,7 @@ function LoginPage({ onNavigate, onLogin }) {
             <div style={{ marginTop: '40px', padding: '16px', background: '#f8f8f8', borderRadius: '8px', fontSize: '14px', color: '#666' }}>
                 <p style={{ marginBottom: '8px', fontWeight: '600' }}>테스트 계정:</p>
                 <p style={{ marginBottom: '4px' }}>아이디: ahnhyun9</p>
-                <p>비밀번호: dksgusWls8&</p>
+                <p>비밀번호: 1234</p>
             </div>
         </div>
     );
